@@ -21,7 +21,7 @@ public class ReversePair {
 
 	}
 
-	private static String getReversePair(int[] arr, int start, int end) {
+	public static String getReversePair(int[] arr, int start, int end) {
 		if (start >= end) {
 			return "";
 		}

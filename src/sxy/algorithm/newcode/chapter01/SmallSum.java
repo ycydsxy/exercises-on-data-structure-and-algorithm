@@ -21,7 +21,7 @@ public class SmallSum {
 
 	}
 
-	private static int getSmallSum(int[] arr, int start, int end) {
+	public static int getSmallSum(int[] arr, int start, int end) {
 		if (start >= end)
 			return 0;
 

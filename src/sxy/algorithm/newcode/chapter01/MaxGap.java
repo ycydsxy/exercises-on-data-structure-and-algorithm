@@ -12,31 +12,55 @@ public class MaxGap {
 			print(getMaxGap(arr));
 			print("");
 		}
-
 	}
 
-	private static int getMaxGap(int[] arr) {
-		if(arr==null || arr.length<=1){
+	public static int getMaxGap(int[] arr) {
+		if (arr == null || arr.length <= 1) {
 			return 0;
 		}
-		
-		//找最小最大值
-		int min=Integer.MAX_VALUE;
-		int max=Integer.MIN_VALUE;
-		for (int i = 0; i < arr.length; i++) {
-			min=arr[i]<min?arr[i]:min;
-			max=arr[i]>max?arr[i]:max;
+
+		// 找最小最大值
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+		int length = arr.length;
+		for (int i = 0; i < length; i++) {
+			min = arr[i] < min ? arr[i] : min;
+			max = arr[i] > max ? arr[i] : max;
+		}
+		if (min == max) {
+			return 0;
 		}
 
-		//初始化桶（保证有一个空桶）
-		int bucketNum=arr.length+1;
-		boolean[] hasValues=new boolean[bucketNum];
-		int[] minValues = new int[bucketNum];
-		int[] maxValues = new int[bucketNum];
-		
-		
-		
-		return 0;
+		// 初始化桶（保证有一个空桶）
+		boolean[] hasValues = new boolean[length + 1];
+		int[] minValues = new int[length + 1];
+		int[] maxValues = new int[length + 1];
+
+		// 入桶
+		for (int i = 0; i < length; i++) {
+			int bid = findBucketIndex(arr[i], min, max, length);
+			minValues[bid] = hasValues[bid] ? Math.min(minValues[bid], arr[i])
+					: arr[i];
+			maxValues[bid] = hasValues[bid] ? Math.max(maxValues[bid], arr[i])
+					: arr[i];
+			hasValues[bid] = true;
+		}
+
+		// 找相邻两桶中最大差值，取最大值即为所求
+		int result = 0;
+		int lastMax = maxValues[0];
+		for (int i = 1; i <= length; i++) {
+			if (hasValues[i]) {
+				result = Math.max(result, minValues[i] - lastMax);
+				lastMax = maxValues[i];
+			}
+		}
+
+		return result;
+	}
+
+	private static int findBucketIndex(int num, int min, int max, int length) {
+		return (num - min) * length / (max - min);
 	}
 
 	private static int[] getRandomArray() {
