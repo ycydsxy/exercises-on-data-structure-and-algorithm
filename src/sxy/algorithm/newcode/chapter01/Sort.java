@@ -3,7 +3,7 @@ package sxy.algorithm.newcode.chapter01;
 import java.util.Arrays;
 
 /**
- * 各种排序算法
+ * 各种排序算法(针对自然数)
  * 
  * @author Kevin Su
  * 
@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Sort {
 
 	public static final int MAX_SIZE = 20;
-	public static final int MAX_NUMBER = 1000;
+	public static final int MAX_NUMBER = 200;
 
 	public static void main(String[] args) {
 		for (int i = 0; i < 10; i++) {
@@ -24,6 +24,8 @@ public class Sort {
 			print("mergeSort:\t", mergeSort(arr));
 			print("quickSort:\t", quickSort(arr));
 			print("heapSort:\t", heapSort(arr));
+			print("countSort:\t", countSort(arr));
+			print("RadixSort:\t", RadixSort(arr));
 			print("");
 		}
 
@@ -86,12 +88,12 @@ public class Sort {
 	public static int[] heapSort(int[] array) {
 		int[] arr = array.clone();
 
-		// use heap insert
+		// use heap insert[时间复杂度为O(n*log(n))]
 		// for (int i = 0; i < arr.length; i++) {
 		// heapInsert(arr, i);
 		// }
 
-		// use heapify
+		// use heapify[时间复杂度为O(n)]
 		int lastLayer = (int) (Math.log(arr.length) / Math.log(2));
 		for (int i = lastLayer - 1; i >= 0; i--) {
 			for (int j = (int) (Math.pow(2, i) - 1); j < (int) (Math.pow(2,
@@ -108,16 +110,120 @@ public class Sort {
 		return arr;
 	}
 
-	public static int[] bucketSort(int[] array) {
+	private static int[] heapInsert(int[] arr, int i) {
+		while (arr[i] > arr[(i - 1) / 2]) {
+			swap(arr, i, (i - 1) / 2);
+			i = (i - 1) / 2;
+		}
+		return arr;
+	}
+
+	private static int[] heapify(int[] arr, int i, int size) {
+		int left = 2 * i + 1;
+		while (left < size) {
+			int right = left + 1;
+			int largest = (right < size && arr[right] > arr[left]) ? right
+					: left;
+			largest = arr[i] > arr[largest] ? i : largest;
+			if (largest == i) {
+				break;
+			}
+			swap(arr, i, largest);
+			i = largest;
+			left = 2 * i + 1;
+		}
+		return arr;
+	}
+
+	public static int[] countSort(int[] array) {
 		int[] arr = array.clone();
-		// TODO: 计数排序，从最小到最大依次给桶，放到桶里再遍历
+
+		// 桶大小
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < arr.length; i++) {
+			max = Math.max(max, arr[i]);
+		}
+		int[] buckets = new int[max + 1];
+
+		// 入桶
+		for (int i = 0; i < arr.length; i++) {
+			buckets[arr[i]]++;
+		}
+
+		// 出桶
+		int i = 0;
+		for (int j = 0; j < buckets.length; j++) {
+			if (buckets[j] > 0) {
+				arr[i++] = j;
+			}
+		}
 		return arr;
 	}
 
 	public static int[] RadixSort(int[] array) {
 		int[] arr = array.clone();
-		// TODO: 基数排序，依次比较各位上的数
+
+		class Node {
+			public int value;
+			public Node next;
+
+			public Node(int value) {
+				this.value = value;
+			}
+
+			@Override
+			public String toString() {
+				return String.valueOf(value);
+			}
+		}
+
+		// 找最大的数位
+		int maxDigit = 1;
+		for (int i = 0; i < arr.length; i++) {
+			int tempMax = 1;
+			int curNum = arr[i];
+			while (curNum / 10 != 0) {
+				tempMax++;
+				curNum /= 10;
+			}
+			maxDigit = Math.max(maxDigit, tempMax);
+		}
+
+		for (int d = 1; d <= maxDigit; d++) {// 每个数位来一遍进桶和出桶
+			// 10个桶，代表0~9的数字
+			Node[] buckets = new Node[10];
+
+			// 向桶里放
+			for (int i = 0; i < arr.length; i++) {
+				int number = getNumber(arr[i], d);
+				if (buckets[number] == null) {
+					buckets[number] = new Node(arr[i]);
+				} else {
+					Node cur = buckets[number];
+					while (cur.next != null) {
+						cur = cur.next;
+					}
+					cur.next = new Node(arr[i]);
+				}
+			}
+
+			// 从桶里拿
+			int j = 0;
+			for (int i = 0; i < buckets.length; i++) {
+				Node cur = buckets[i];
+				while (cur != null) {
+					arr[j++] = cur.value;
+					cur = cur.next;
+				}
+			}
+		}
+
 		return arr;
+	}
+
+	// 获取某一特定位上的数字
+	private static int getNumber(int x, int digit) {
+		return (x / (int) Math.pow(10, digit - 1) % 10);
 	}
 
 	private static int[] getRandomArray() {
@@ -230,28 +336,4 @@ public class Sort {
 		return new int[] { less, more };
 	}
 
-	private static int[] heapInsert(int[] arr, int i) {
-		while (arr[i] > arr[(i - 1) / 2]) {
-			swap(arr, i, (i - 1) / 2);
-			i = (i - 1) / 2;
-		}
-		return arr;
-	}
-
-	private static int[] heapify(int[] arr, int i, int size) {
-		int left = 2 * i + 1;
-		while (left < size) {
-			int right = left + 1;
-			int largest = (right < size && arr[right] > arr[left]) ? right
-					: left;
-			largest = arr[i] > arr[largest] ? i : largest;
-			if (largest == i) {
-				break;
-			}
-			swap(arr, i, largest);
-			i = largest;
-			left = 2 * i + 1;
-		}
-		return arr;
-	}
 }
