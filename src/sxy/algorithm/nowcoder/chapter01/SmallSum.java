@@ -1,56 +1,50 @@
-package sxy.algorithm.newcode.chapter01;
+package sxy.algorithm.nowcoder.chapter01;
 
 /**
- * 逆序对问题 在一个数组中，左边的数如果比右边的数大，则折两个数构成一个逆序对，请打印所有逆序对。
+ * 小和问题 在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组 的小和
  * 
- * 解法：使用归并排序的思想，在合并的时候打印
+ * 解法：使用归并排序的思想，在合并的时候计算小和
  * 
  * @author Kevin Su
  * 
  */
-public class ReversePair {
+public class SmallSum {
 
 	public static final int MAX_SIZE = 15;
 	public static final int MAX_NUMBER = 100;
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			int[] arr = getRandomArray();
 			print(arr);
-			print(getReversePair(arr, 0, arr.length - 1));
+			print(getSmallSum(arr, 0, arr.length - 1));
 			print("");
 		}
 
 	}
 
-	public static String getReversePair(int[] arr, int start, int end) {
-		if (start >= end) {
-			return "";
-		}
+	public static int getSmallSum(int[] arr, int start, int end) {
+		if (start >= end)
+			return 0;
 
-		String reversePair = "";
+		int result = 0;
 		int mid = start + ((end - start) >> 1);
-		reversePair = getReversePair(arr, start, mid)
-				+ getReversePair(arr, mid + 1, end)
-				+ getReversePairInMergeProcess(arr, start, mid, end);
-		return reversePair;
+		result = getSmallSum(arr, start, mid) + getSmallSum(arr, mid + 1, end)
+				+ getSmallSumInMergeProcess(arr, start, mid, end);
+		return result;
 	}
 
-	private static String getReversePairInMergeProcess(int[] arr, int start,
-			int mid, int end) {
+	private static int getSmallSumInMergeProcess(int[] arr, int start, int mid,
+			int end) {
+		int result = 0;
 		int[] temp = new int[arr.length];
-		String reversePair = "";
 
 		int k = start;
 		int i = start;
 		int j = mid + 1;
 
 		while (i <= mid && j <= end) {
-			if (arr[i] > arr[j]) {// 怎么改进？？
-				for (int p = i; p <= mid; p++) {
-					reversePair += arr[p] + "," + arr[j] + " ";
-				}
-			}
+			result += arr[i] < arr[j] ? arr[i] * (end - j + 1) : 0;
 			temp[k++] = arr[i] < arr[j] ? arr[i++] : arr[j++];
 		}
 
@@ -66,8 +60,7 @@ public class ReversePair {
 			arr[a] = temp[a];
 		}
 
-		return reversePair;
-
+		return result;
 	}
 
 	private static int[] getRandomArray() {

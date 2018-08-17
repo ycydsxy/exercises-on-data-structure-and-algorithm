@@ -1,4 +1,4 @@
-package sxy.algorithm.newcode.chapter02;
+package sxy.algorithm.nowcoder.chapter02;
 
 import java.util.Scanner;
 

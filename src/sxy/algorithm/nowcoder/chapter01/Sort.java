@@ -1,4 +1,4 @@
-package sxy.algorithm.newcode.chapter01;
+package sxy.algorithm.nowcoder.chapter01;
 
 import java.util.Arrays;
 
