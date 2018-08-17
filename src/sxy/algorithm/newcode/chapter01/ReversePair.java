@@ -3,6 +3,8 @@ package sxy.algorithm.newcode.chapter01;
 /**
  * 逆序对问题 在一个数组中，左边的数如果比右边的数大，则折两个数构成一个逆序对，请打印所有逆序对。
  * 
+ * 解法：使用归并排序的思想，在合并的时候打印
+ * 
  * @author Kevin Su
  * 
  */

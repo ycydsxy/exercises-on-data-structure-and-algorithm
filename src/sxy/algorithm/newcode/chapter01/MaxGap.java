@@ -3,6 +3,8 @@ package sxy.algorithm.newcode.chapter01;
 /**
  * 最大距离问题 给定一个数组，求如果排序之后，相邻两数的最大差值，要求时间复杂度O(N)，且要求不能用非基于比较的排序。
  * 
+ * 解法：使用桶的思想
+ * 
  * @author Kevin
  * 
  */

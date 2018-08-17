@@ -3,6 +3,8 @@ package sxy.algorithm.newcode.chapter01;
 /**
  * 小和问题 在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组 的小和
  * 
+ * 解法：使用归并排序的思想，在合并的时候计算小和
+ * 
  * @author Kevin Su
  * 
  */
