@@ -5,6 +5,8 @@ import java.util.Stack;
 /**
  * 用数组实现固定大小的栈
  * 
+ * 解法：使用一个变量记录此时的栈顶
+ * 
  * @author Kevin
  * 
  */
