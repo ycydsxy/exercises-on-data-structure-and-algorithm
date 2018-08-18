@@ -1,7 +1,7 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * 给定一个整型矩阵matrix，请按照转圈的方式打印它。额外空间复杂度为O(1)。
+ * 转圈打印矩阵 给定一个整型矩阵matrix，请按照转圈的方式打印它。额外空间复杂度为O(1)。
  * 
  * 解法：有整体思维，其实就是打印框
  * 
@@ -23,7 +23,7 @@ public class PrintMatrixInSpiralOrder {
 	}
 
 	public static void printMatrixInSpiralOrder(int[][] m) {
-		if (m == null || m.length < 1) {
+		if (m == null || m.length == 0 || m[0].length == 0) {
 			return;
 		}
 		int rMax = m.length - 1;

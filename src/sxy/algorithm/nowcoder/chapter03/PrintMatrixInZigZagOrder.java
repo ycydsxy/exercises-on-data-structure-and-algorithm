@@ -1,7 +1,7 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * 给定一个整型矩阵matrix，请按照折线的方式打印它。额外空间复杂度为O(1)。
+ * 折线打印矩阵 给定一个整型矩阵matrix，请按照折线的方式打印它。额外空间复杂度为O(1)。
  * 
  * 解法：有整体思维，其实就是直线
  * 
@@ -23,7 +23,7 @@ public class PrintMatrixInZigZagOrder {
 	}
 
 	public static void printMatrixInZigZagOrder(int[][] m) {
-		if (m == null || m.length < 1) {
+		if (m == null || m.length == 0 || m[0].length == 0) {
 			return;
 		}
 		int rMax = m.length - 1;
