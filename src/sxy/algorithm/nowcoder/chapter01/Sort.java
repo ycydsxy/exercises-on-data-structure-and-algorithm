@@ -318,6 +318,7 @@ public class Sort {
 		return arr;
 	}
 
+	// 荷兰国旗问题，如何将一个数组按某个划分值分为小于、等于、大于区
 	private static int[] partition(int[] arr, int start, int end) {
 		int less = start - 1;
 		int more = end + 1;
