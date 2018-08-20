@@ -138,6 +138,11 @@ public class BinaryTreeTraversal {
 	/**
 	 * 传统的后序遍历
 	 * 
+	 * 思路：用一个栈记录遍历的顺序，每次peek一个节点出来作为当前节点。用一个last变量存储上次打印的节点(之前节点)，依次判断是否以下情形：
+	 * 1.如果当前节点有左节点且之前节点不是它的子节点，说明下面的还没访问，压入左子节点，搞左边界；
+	 * 2.如果当前节点有右节点且之前节点不是它的右子节点，则说明右边的还没访问过，压入右子节点，搞右子节点的左边界；
+	 * 3.其它情况说明当前节点是叶节点或者当前节点的子节点都搞过了，则弹出并打印，并把之前节点指向当前节点。
+	 * 
 	 * @param head
 	 */
 	public static void posOrderUnrecur2(Node head) {
@@ -162,6 +167,11 @@ public class BinaryTreeTraversal {
 		}
 	}
 
+	/**
+	 * 类似前序遍历，但是宽度优先遍历使用队列结构
+	 * 
+	 * @param head
+	 */
 	public static void layerOrderUnrecur(Node head) {
 		if (head == null) {
 			return;
