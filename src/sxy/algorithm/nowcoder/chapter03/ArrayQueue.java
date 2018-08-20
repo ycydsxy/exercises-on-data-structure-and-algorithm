@@ -18,7 +18,7 @@ public class ArrayQueue {
 	int size;
 
 	public ArrayQueue() {
-		new ArrayQueue(10);
+		this(10);
 	}
 
 	public ArrayQueue(int arrLength) {
