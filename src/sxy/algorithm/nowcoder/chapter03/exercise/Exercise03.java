@@ -105,6 +105,9 @@ public class Exercise03 {
 		}
 		scanner.close();
 
+		print(linkedList, headAddress);
+		System.out.println();
+
 		boolean flag = true;
 
 		if (n > 1 && k > 0) {
