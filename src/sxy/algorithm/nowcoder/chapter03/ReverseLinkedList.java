@@ -1,7 +1,7 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * ��ת��������˫���� ��������ΪN��ʱ�临�Ӷ�Ҫ��ΪO(N)������ռ� ���Ӷ�Ҫ��ΪO(1)
+ * 翻转单链表、双链表 链表长度为N，时间复杂度要求为O(N)，额外空间 复杂度要求为O(1)
  * 
  * @author Kevin
  * 

@@ -1,17 +1,17 @@
 package sxy.algorithm.nowcoder.chapter04;
 
 /**
- * Ê÷ÐÎDPÓÐ¹ØÌâÄ¿ÌØµã£ºÌâÉèºÍÃ¿¸ö½ÚµãÓÐ¹Ø£¨»òÕßËùÓÐ×ÓÊ÷£©
+ * æ ‘å½¢DPæœ‰å…³é¢˜ç›®ç‰¹ç‚¹ï¼šé¢˜è®¾å’Œæ¯ä¸ªèŠ‚ç‚¹æœ‰å…³ï¼ˆæˆ–è€…æ‰€æœ‰å­æ ‘ï¼‰
  * 
- * ½â·¨£º
+ * è§£æ³•ï¼š
  * 
- * 1) ·ÖÎö¿ÉÄÜÐÔ£ºÒ»¸ö½ÚµãÂú×ãÌõ¼þÐèÒª×ó¡¢ÓÒ×ÓÊ÷·Ö±ðÂú×ãÊ²Ã´Ìõ¼þ£¬ÇÒÕûºÏÆðÀ´Ê±ÐèÂú×ãÊ²Ã´Ìõ¼þ
+ * 1) åˆ†æžå¯èƒ½æ€§ï¼šä¸€ä¸ªèŠ‚ç‚¹æ»¡è¶³æ¡ä»¶éœ€è¦å·¦ã€å³å­æ ‘åˆ†åˆ«æ»¡è¶³ä»€ä¹ˆæ¡ä»¶ï¼Œä¸”æ•´åˆèµ·æ¥æ—¶éœ€æ»¡è¶³ä»€ä¹ˆæ¡ä»¶
  * 
- * 2) ½¨Á¢ÐÅÏ¢Àà£ºÐèÒª×ó¡¢ÓÒ×ÓÊ÷µÄÐÅÏ¢£¬ÒÔ¼°ÕûºÏÆðÀ´Ê±ºòÐèÒªÊ²Ã´ÐÅÏ¢£¬½¨Á¢Ò»¸öÀà
+ * 2) å»ºç«‹ä¿¡æ¯ç±»ï¼šéœ€è¦å·¦ã€å³å­æ ‘çš„ä¿¡æ¯ï¼Œä»¥åŠæ•´åˆèµ·æ¥æ—¶å€™éœ€è¦ä»€ä¹ˆä¿¡æ¯ï¼Œå»ºç«‹ä¸€ä¸ªç±»
  * 
- * 3) Ð´µÝ¹éº¯Êý
+ * 3) å†™é€’å½’å‡½æ•°
  * 
- * 4) ÕûºÏ×ó¡¢ÓÒ×ÓÊ÷µÄ·µ»ØÖµ
+ * 4) æ•´åˆå·¦ã€å³å­æ ‘çš„è¿”å›žå€¼
  * 
  * @author Kevin
  * 
@@ -29,7 +29,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇÍêÈ«¶þ²æÊ÷
+	 * æ˜¯å¦æ˜¯å®Œå…¨äºŒå‰æ ‘
 	 * 
 	 * @param head
 	 * @return
@@ -60,21 +60,21 @@ public class BinaryTreeDP {
 
 		boolean flag = false;
 
-		if (left.isCompleteBinaryTree && right.isCompleteBinaryTree) {// ×óÓÒ¶¼ÊÇÍêÈ«¶þ²æÊ÷
-			if (left.depth == right.depth) {// Èô×óÊ÷Éî¶ÈµÈÓÚÓÒÊ÷
-				if (left.count == ((1 << left.depth) - 1)) {// ×óÊ÷ÊÇÂúµÄ£¬ÕûÌå²ÅÎªÍêÈ«¶þ²æÊ÷
+		if (left.isCompleteBinaryTree && right.isCompleteBinaryTree) {// å·¦å³éƒ½æ˜¯å®Œå…¨äºŒå‰æ ‘
+			if (left.depth == right.depth) {// è‹¥å·¦æ ‘æ·±åº¦ç­‰äºŽå³æ ‘
+				if (left.count == ((1 << left.depth) - 1)) {// å·¦æ ‘æ˜¯æ»¡çš„ï¼Œæ•´ä½“æ‰ä¸ºå®Œå…¨äºŒå‰æ ‘
 					flag = true;
-				} else {// ×óÊ÷²»Âú
+				} else {// å·¦æ ‘ä¸æ»¡
 
 				}
-			} else if (left.depth == right.depth + 1) {// Èô×óÊ÷Éî¶ÈµÈÓÚÓÒÊ÷Éî¶È¼ÓÒ»
-				if (right.count == ((1 << right.depth) - 1)) {// ÓÒÊ÷ÊÇÂúµÄ£¬ÕûÌå²ÅÎªÍêÈ«¶þ²æÊ÷
+			} else if (left.depth == right.depth + 1) {// è‹¥å·¦æ ‘æ·±åº¦ç­‰äºŽå³æ ‘æ·±åº¦åŠ ä¸€
+				if (right.count == ((1 << right.depth) - 1)) {// å³æ ‘æ˜¯æ»¡çš„ï¼Œæ•´ä½“æ‰ä¸ºå®Œå…¨äºŒå‰æ ‘
 					flag = true;
 				}
-			} else {// ×óÓÒÊ÷Éî¶ÈÖ®²î´óÓÚÒ»
+			} else {// å·¦å³æ ‘æ·±åº¦ä¹‹å·®å¤§äºŽä¸€
 
 			}
-		} else {// ×óÓÒÖÐÖÁÉÙÓÐÒ»¸ö²»ÊÇÍêÈ«¶þ²æÊ÷
+		} else {// å·¦å³ä¸­è‡³å°‘æœ‰ä¸€ä¸ªä¸æ˜¯å®Œå…¨äºŒå‰æ ‘
 
 		}
 
@@ -83,7 +83,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇ¶þ²æËÑË÷Ê÷
+	 * æ˜¯å¦æ˜¯äºŒå‰æœç´¢æ ‘
 	 * 
 	 * @param head
 	 * @return
@@ -128,7 +128,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇÆ½ºâ¶þ²æÊ÷
+	 * æ˜¯å¦æ˜¯å¹³è¡¡äºŒå‰æ ‘
 	 * 
 	 * @param head
 	 * @return
@@ -167,7 +167,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * Çó¶þ²æÊ÷ÖÐ×î´óµÄ¾àÀë
+	 * æ±‚äºŒå‰æ ‘ä¸­æœ€å¤§çš„è·ç¦»
 	 * 
 	 * @param head
 	 * @return
@@ -195,8 +195,8 @@ public class BinaryTreeDP {
 		Dis_Info right = processFindDistance(head.right);
 
 		int height = Math.max(left.height, right.height) + 1;
-		int distance1 = left.height + right.height + 1;// ¾­¹ýhead½ÚµãµÄ×î´ó¾àÀë
-		int distance2 = Math.max(left.distance, right.distance); // ²»¾­¹ýhead½ÚµãµÄ×î´ó¾àÀë
+		int distance1 = left.height + right.height + 1;// ç»è¿‡headèŠ‚ç‚¹çš„æœ€å¤§è·ç¦»
+		int distance2 = Math.max(left.distance, right.distance); // ä¸ç»è¿‡headèŠ‚ç‚¹çš„æœ€å¤§è·ç¦»
 
 		return new Dis_Info(Math.max(distance1, distance2), height);
 	}

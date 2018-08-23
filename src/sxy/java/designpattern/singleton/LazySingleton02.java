@@ -1,11 +1,11 @@
-package sxy.java.singleton;
+package sxy.java.designpattern.singleton;
 
 /**
- * ����ʽ�ĵ���ģʽ��ʹ��ͬ������
+ * 懒汉式的单例模式，使用同步方法
  * 
- * �ŵ㣺��ʹ�õ�ʱ���ٳ�ʼ����ʵ���������أ��̰߳�ȫ
+ * 优点：在使用的时候再初始化，实现了懒加载；线程安全
  * 
- * ȱ�㣺Ч�ʵ��£�����߳�ͬʱ��ȡʱ��Ҫ�Ŷ�
+ * 缺点：效率低下，多个线程同时获取时需要排队
  * 
  * @author Kevin
  * 

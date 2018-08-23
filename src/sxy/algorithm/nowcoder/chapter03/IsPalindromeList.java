@@ -3,9 +3,9 @@ package sxy.algorithm.nowcoder.chapter03;
 import java.util.Stack;
 
 /**
- * ÅĞ¶ÏÒ»¸öÁ´±íÊÇ·ñÎª»ØÎÄ½á¹¹
+ * åˆ¤æ–­ä¸€ä¸ªé“¾è¡¨æ˜¯å¦ä¸ºå›æ–‡ç»“æ„
  * 
- * ½ø½×£º Èç¹ûÁ´±í³¤¶ÈÎªN£¬Ê±¼ä¸´ÔÓ¶È´ïµ½O(N)£¬¶îÍâ¿Õ¼ä¸´ÔÓ¶È´ïµ½O(1)
+ * è¿›é˜¶ï¼š å¦‚æœé“¾è¡¨é•¿åº¦ä¸ºNï¼Œæ—¶é—´å¤æ‚åº¦è¾¾åˆ°O(N)ï¼Œé¢å¤–ç©ºé—´å¤æ‚åº¦è¾¾åˆ°O(1)
  * 
  * @author Kevin
  * 
@@ -51,7 +51,7 @@ public class IsPalindromeList {
 
 		boolean flag = true;
 
-		// ¿ìÂıÖ¸ÕëÕÒÖĞµã
+		// å¿«æ…¢æŒ‡é’ˆæ‰¾ä¸­ç‚¹
 		Node fast = head;
 		Node slow = head;
 		while (fast.next != null && fast.next.next != null) {
@@ -60,10 +60,10 @@ public class IsPalindromeList {
 		}
 		Node end = fast.next == null ? fast : fast.next;
 		Node mid = fast.next == null ? slow : slow.next;
-		// ·­×ªÖĞµãÒÔºóµÄÁ´±í
+		// ç¿»è½¬ä¸­ç‚¹ä»¥åçš„é“¾è¡¨
 		reverseLinkedList(mid);
 
-		// ÅĞ¶ÏÊÇ·ñ»ØÎÄ
+		// åˆ¤æ–­æ˜¯å¦å›æ–‡
 		for (Node i1 = head, i2 = end; i1 != mid && i2 != null; i1 = i1.next, i2 = i2.next) {
 			if (i1.value != i2.value) {
 				flag = false;
@@ -71,7 +71,7 @@ public class IsPalindromeList {
 			}
 		}
 
-		// »¹Ô­Á´±í
+		// è¿˜åŸé“¾è¡¨
 		reverseLinkedList(end);
 
 		return flag;

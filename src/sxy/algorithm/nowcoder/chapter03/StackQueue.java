@@ -5,9 +5,9 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
- * 用栈实现队列结构
+ * 鐢ㄦ爤瀹炵幇闃熷垪缁撴瀯
  * 
- * 解法：使用两个栈即可
+ * 瑙ｆ硶锛氫娇鐢ㄤ袱涓爤鍗冲彲
  * 
  * @author Kevin
  * 

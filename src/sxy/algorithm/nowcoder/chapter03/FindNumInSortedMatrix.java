@@ -1,7 +1,7 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * 有序矩阵找数 在一个行列分别排好序的矩阵（m*n)中，找某一数字x，要求时间复杂度为O(m+n)
+ * 鏈夊簭鐭╅樀鎵炬暟 鍦ㄤ竴涓鍒楀垎鍒帓濂藉簭鐨勭煩闃碉紙m*n)涓紝鎵炬煇涓�鏁板瓧x锛岃姹傛椂闂村鏉傚害涓篛(m+n)
  * 
  * @author Kevin
  * 

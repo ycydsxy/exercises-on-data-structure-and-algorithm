@@ -1,11 +1,11 @@
-package sxy.java.singleton;
+package sxy.java.designpattern.singleton;
 
 /**
- * ����ʽ�ĵ���ģʽ��ʹ�þ�̬�������г�ʼ��
+ * 饿汉式的单例模式，使用静态代码块进行初始化
  * 
- * �ŵ㣺�̰߳�ȫ
+ * 优点：线程安全
  * 
- * ȱ�㣺����ʽ�����������ռ���ڴ�
+ * 缺点：饿汉式，如果不用则占用内存
  * 
  * @author Kevin
  * 

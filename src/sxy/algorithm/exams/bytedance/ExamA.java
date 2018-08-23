@@ -1,4 +1,4 @@
-package sxy.algorithm.exams.bytedance;
+ï»¿package sxy.algorithm.exams.bytedance;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * µºÎÊÌâ
+ * å²›é—®é¢˜
  * 
  * @author Kevin
  *
@@ -21,7 +21,7 @@ public class ExamA {
 		String[] line1 = sc.nextLine().split(",");
 		m = Integer.parseInt(line1[0]);
 		n = Integer.parseInt(line1[1]);
-		int[][] matrix = new int[m][n];// ¹ÛÖÚ¾ØÕó
+		int[][] matrix = new int[m][n];// è§‚ä¼—çŸ©é˜µ
 		for (int i = 0; i < m; i++) {
 			String[] currentLine = sc.nextLine().split(",");
 			for (int j = 0; j < n; j++) {

@@ -1,13 +1,11 @@
 package sxy.algorithm.nowcoder.chapter04;
 
-import sxy.algorithm.nowcoder.chapter04.BinaryTreeDP.Node;
-
 /**
  * 
- * ��֪һ����ȫ������������ڵ�ĸ��� Ҫ��ʱ�临�Ӷȵ���O(N)��NΪ������Ľڵ����
+ * 已知一棵完全二叉树，求其节点的个数 要求：时间复杂度低于O(N)，N为这棵树的节点个数
  * 
- * �ⷨ��ʱ�临�Ӷȵ���O(N)���ʲ��ܱ��������Է�Ϊ��������������һ������������Ⱥ�����һ�����������϶������ģ�ֻ�ø����������������϶������ģ�ֻ�ø�������
- * ����ȵ��㷨��O(logN)�ģ���ÿ�ζ�ֻ�ø�һ�룬��������㷨ʱ�临�Ӷ���O((logN)^2)
+ * 解法：时间复杂度低于O(N)，故不能遍历，可以分为左右子树求其中一个。若左树深度和右树一样，则左树肯定是满的，只用搞右树；否则右树肯定是满的，只用搞左树。
+ * 找深度的算法是O(logN)的，而每次都只用搞一半，故整体的算法时间复杂度是O((logN)^2)
  * 
  * @author Kevin
  * 
@@ -76,7 +74,7 @@ public class CBTNodeNum {
 		head.left.right = new Node(5);
 		printTree(head);
 		System.out.println(nodeNum(head));
-		
+
 		head = new Node(1);
 		head.left = new Node(2);
 		head.right = new Node(3);

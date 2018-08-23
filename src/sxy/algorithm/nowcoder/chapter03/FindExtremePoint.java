@@ -1,21 +1,21 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * Ѱ�Ҽ�Сֵ�� ������һ���飬Ѱ����һ����Сֵ���±ꡣ��Сֵ���±���Ϊi������a[i-1],a[i+1]������a[i](��Խ���߽磬���Լ������)��
- * Ҫ��ʱ�临�Ӷ�С��O (N)��
+ * 寻找极小值点 给定给一数组，寻找其一个极小值的下标。极小值点下标若为i，则有a[i-1],a[i+1]均大于a[i](若越过边界，则该约束忽略)。
+ * 要求时间复杂度小于O (N)。
  * 
- * �ⷨ����ʱ�临�Ӷ�С��O(N)���ʲ��ܱ������ɲ��ö��ַ�����ע�����������ʵ����⣬���Կ���ʹ�ö��ַ������
+ * 解法：。时间复杂度小于O(N)，故不能遍历，可采用二分法。【注：有排他性质的问题，可以考虑使用二分法解决】
  * 
  * @author Kevin
  * 
  */
 public class FindExtremePoint {
 	public static int findExtremePoint(int[] arr) {
-		// ������
+		// 不存在
 		if (arr == null || arr.length == 0) {
 			return -1; // no exist
 		}
-		// ����Ҳ������ֵ��
+		// 两端也算作极值点
 		if (arr.length == 1 || arr[0] < arr[1]) {
 			return 0;
 		}
@@ -23,7 +23,7 @@ public class FindExtremePoint {
 			return arr.length - 1;
 		}
 
-		// ��ֵ�����������ˣ�����left�����ͣ�right���ҵ�ͣ�ÿһ��������ܱ����������
+		// 极值点若不在两端，其中left比左点低，right比右点低，每一步做完均能保持这个性质
 		int left = 1;
 		int right = arr.length - 2;
 		int mid = 0;
@@ -34,11 +34,11 @@ public class FindExtremePoint {
 			} else if (arr[mid] > arr[mid + 1]) {
 				left = mid + 1;
 			} else {
-				return mid;// ������������Ŀ϶���
+				return mid;// 满足这个条件的肯定是
 			}
 		}
 
-		// ѭ��������û�ҵ�����ʱleft=right��ָ��ͬһ���㣬����������left�����ͣ�right���ҵ�ͣ�����������
+		// 循环结束还没找到，此时left=right而指向同一个点，而由于其中left比左点低，right比右点低，故这个点就是
 		return left;
 	}
 

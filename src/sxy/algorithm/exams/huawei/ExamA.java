@@ -1,10 +1,10 @@
-package sxy.algorithm.exams.huawei;
+ï»¿package sxy.algorithm.exams.huawei;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
- * ¹¤³§1ºÍ¹¤³§2ÄÄ¸ö¸ü±ãÒË
+ * å·¥åŽ‚1å’Œå·¥åŽ‚2å“ªä¸ªæ›´ä¾¿å®œ
  * 
  * @author Kevin
  *
@@ -17,20 +17,20 @@ public class ExamA {
 		double price = sc.nextDouble();
 		sc.close();
 
-		double money1 = price * n;// Ñ¡Ôñ1³§ÉÌµÄÇ®Êý
+		double money1 = price * n;// é€‰æ‹©1åŽ‚å•†çš„é’±æ•°
 		if (n >= 3) {
-			money1 *= 0.7;// ´ò7ÕÛ
-			money1 = getTrueMoney(money1);// ËÄÉáÎåÈë
+			money1 *= 0.7;// æ‰“7æŠ˜
+			money1 = getTrueMoney(money1);// å››èˆäº”å…¥
 		}
-		money1 += 10;// ÔË·Ñ
+		money1 += 10;// è¿è´¹
 		if (money1 >= 50) {
 			money1 -= 10;
 		}
 
-		double money2 = price * n;// Ñ¡Ôñ2³§ÉÌµÄÇ®Êý
+		double money2 = price * n;// é€‰æ‹©2åŽ‚å•†çš„é’±æ•°
 		int bargin = ((int) money2 / 10) * 2;
 		money2 -= bargin;
-		money2 += 6;// ÔË·Ñ
+		money2 += 6;// è¿è´¹
 		if (money2 >= 99) {
 			money2 -= 6;
 		}

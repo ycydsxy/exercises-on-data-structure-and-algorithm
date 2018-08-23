@@ -1,4 +1,4 @@
-package sxy.algorithm.exams.bytedance;
+ï»¿package sxy.algorithm.exams.bytedance;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Çø¼äºÏ²¢ £¬ÊäÈë¶à¸öÇø¼ä£¬½«ÕâĞ©Çø¼ä½øĞĞºÏ²¢
+ * åŒºé—´åˆå¹¶ ï¼Œè¾“å…¥å¤šä¸ªåŒºé—´ï¼Œå°†è¿™äº›åŒºé—´è¿›è¡Œåˆå¹¶
  * 
- * ÊäÈë:
+ * è¾“å…¥:
  * 2 
  * 1,5;2,6; 
  * 7,8;
  * 
- * Êä³ö:
+ * è¾“å‡º:
  * 1,6;7,8
  * 
  * @author Kevin

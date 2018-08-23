@@ -3,10 +3,10 @@ package sxy.algorithm.nowcoder.chapter03;
 import java.util.HashMap;
 
 /**
- * ¸´ÖÆº¬ÓĞËæ»úÖ¸ÕëµÄÁ´±í ¸ø¶¨Ò»¸öÓÉ Node½ÚµãÀàĞÍ×é³ÉµÄÎŞ»·µ¥Á´±íµÄÍ·½Úµãhead£¬ÇëÊµÏÖÒ»¸ö º¯ÊıÍê³É
- * Õâ¸öÁ´±íÖĞËùÓĞ½á¹¹µÄ¸´ÖÆ£¬²¢·µ»Ø¸´ÖÆµÄĞÂÁ´±íµÄÍ·½Úµã¡£
+ * å¤åˆ¶å«æœ‰éšæœºæŒ‡é’ˆçš„é“¾è¡¨ ç»™å®šä¸€ä¸ªç”± NodeèŠ‚ç‚¹ç±»å‹ç»„æˆçš„æ— ç¯å•é“¾è¡¨çš„å¤´èŠ‚ç‚¹headï¼Œè¯·å®ç°ä¸€ä¸ª å‡½æ•°å®Œæˆ
+ * è¿™ä¸ªé“¾è¡¨ä¸­æ‰€æœ‰ç»“æ„çš„å¤åˆ¶ï¼Œå¹¶è¿”å›å¤åˆ¶çš„æ–°é“¾è¡¨çš„å¤´èŠ‚ç‚¹ã€‚
  * 
- * ½ø½×£º¶îÍâ¿Õ¼ä¸´ÔÓ¶ÈO(1)£¬ÇÒÔÚÊ±¼ä¸´ÔÓ¶ÈÎª O(N) ÄÚÍê³ÉÔ­ÎÊÌâÒªÊµÏÖµÄº¯Êı
+ * è¿›é˜¶ï¼šé¢å¤–ç©ºé—´å¤æ‚åº¦O(1)ï¼Œä¸”åœ¨æ—¶é—´å¤æ‚åº¦ä¸º O(N) å†…å®ŒæˆåŸé—®é¢˜è¦å®ç°çš„å‡½æ•°
  * 
  * @author Kevin
  * 
@@ -29,13 +29,13 @@ public class CopyListWithRandom {
 
 	}
 
-	// ²»ÄÜ´ïµ½½ø½×ÒªÇó£¬Ê¹ÓÃÁË¶îÍâ¿Õ¼ä
+	// ä¸èƒ½è¾¾åˆ°è¿›é˜¶è¦æ±‚ï¼Œä½¿ç”¨äº†é¢å¤–ç©ºé—´
 	public static Node copyListWithRand1(Node head) {
 		if (head == null) {
 			return null;
 		}
 
-		// ÏÈ¿½±´µ¥Á´±í
+		// å…ˆæ‹·è´å•é“¾è¡¨
 		Node headCopy = new Node(head.value);
 		Node cur = head;
 		Node curCopy = headCopy;
@@ -45,7 +45,7 @@ public class CopyListWithRandom {
 			curCopy = curCopy.next;
 		}
 
-		// Ôö¼Ó¹şÏ£±í£¬ÎªÁË±£´æÔ­½ÚµãºÍĞÂ¿½±´½ÚµãÖ®¼äµÄ¹ØÏµ
+		// å¢åŠ å“ˆå¸Œè¡¨ï¼Œä¸ºäº†ä¿å­˜åŸèŠ‚ç‚¹å’Œæ–°æ‹·è´èŠ‚ç‚¹ä¹‹é—´çš„å…³ç³»
 		HashMap<Node, Node> map = new HashMap<Node, Node>();
 		cur = head;
 		curCopy = headCopy;
@@ -55,7 +55,7 @@ public class CopyListWithRandom {
 			curCopy = curCopy.next;
 		}
 
-		// ÔÙ±éÀúÒ»±é£¬½«¿½±´Á´±íµÄËæ»úÖ¸Õë²¹È«
+		// å†éå†ä¸€éï¼Œå°†æ‹·è´é“¾è¡¨çš„éšæœºæŒ‡é’ˆè¡¥å…¨
 		cur = head;
 		curCopy = headCopy;
 		while (cur != null) {
@@ -68,13 +68,13 @@ public class CopyListWithRandom {
 
 	}
 
-	// ´ïµ½½ø½×ÒªÇó
+	// è¾¾åˆ°è¿›é˜¶è¦æ±‚
 	public static Node copyListWithRand2(Node head) {
 		if (head == null) {
 			return null;
 		}
 
-		// ÏÈ¿½±´µ¥Á´±í
+		// å…ˆæ‹·è´å•é“¾è¡¨
 		Node headCopy = new Node(head.value);
 		Node cur = head;
 		Node curCopy = headCopy;
@@ -84,7 +84,7 @@ public class CopyListWithRandom {
 			curCopy = curCopy.next;
 		}
 
-		// ¿½±´Á´±íºÍÔ­Á´±íÈÚºÏ£¨Í¬ÑùÊÇ±£Áô¶ÔÓ¦¹ØÏµ£©
+		// æ‹·è´é“¾è¡¨å’ŒåŸé“¾è¡¨èåˆï¼ˆåŒæ ·æ˜¯ä¿ç•™å¯¹åº”å…³ç³»ï¼‰
 		cur = head;
 		curCopy = headCopy;
 		while (cur != null) {
@@ -96,7 +96,7 @@ public class CopyListWithRandom {
 			curCopy = curCopyNext;
 		}
 
-		// ÔÙ±éÀúÒ»±é£¬½«¿½±´Á´±íµÄËæ»úÖ¸Õë²¹È«
+		// å†éå†ä¸€éï¼Œå°†æ‹·è´é“¾è¡¨çš„éšæœºæŒ‡é’ˆè¡¥å…¨
 		cur = head;
 		curCopy = headCopy;
 		while (cur != null) {
@@ -105,7 +105,7 @@ public class CopyListWithRandom {
 			curCopy = curCopy.next == null ? null : curCopy.next.next;
 		}
 
-		// ½«Á´±í²ğ·Ö
+		// å°†é“¾è¡¨æ‹†åˆ†
 		cur = head;
 		while (cur != null) {
 			Node curNext = cur.next.next;

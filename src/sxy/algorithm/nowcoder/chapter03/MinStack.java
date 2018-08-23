@@ -3,9 +3,9 @@ package sxy.algorithm.nowcoder.chapter03;
 import java.util.Stack;
 
 /**
- * ʵ��һ�������ջ����ʵ��ջ�Ļ������ܵĻ����ϣ���ʵ�ַ���ջ����СԪ�صĲ�����pop��push��getMin������ʱ�临�Ӷȶ���O(1)��
+ * 实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素的操作。pop、push、getMin操作的时间复杂度都是O(1)。
  * 
- * �ⷨ��O(1)�ĸ��Ӷ���Ҫ������Сֵ�Ĺ켣������ԭ��ջ�Ļ������ٿ�һ��ջ
+ * 解法：O(1)的复杂度需要保留最小值的轨迹，即在原有栈的基础上再开一个栈
  * 
  * @author Kevin
  * 

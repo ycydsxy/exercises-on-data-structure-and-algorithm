@@ -1,9 +1,9 @@
 package sxy.algorithm.nowcoder.chapter01;
 
 /**
- * ×î´ó¾àÀëÎÊÌâ ¸ø¶¨Ò»¸öÊı×é£¬ÇóÈç¹ûÅÅĞòÖ®ºó£¬ÏàÁÚÁ½ÊıµÄ×î´ó²îÖµ£¬ÒªÇóÊ±¼ä¸´ÔÓ¶ÈO(N)£¬ÇÒÒªÇó²»ÄÜÓÃ·Ç»ùÓÚ±È½ÏµÄÅÅĞò¡£
+ * æœ€å¤§è·ç¦»é—®é¢˜ ç»™å®šä¸€ä¸ªæ•°ç»„ï¼Œæ±‚å¦‚æœæ’åºä¹‹åï¼Œç›¸é‚»ä¸¤æ•°çš„æœ€å¤§å·®å€¼ï¼Œè¦æ±‚æ—¶é—´å¤æ‚åº¦O(N)ï¼Œä¸”è¦æ±‚ä¸èƒ½ç”¨éåŸºäºæ¯”è¾ƒçš„æ’åºã€‚
  * 
- * ½â·¨£ºÊ¹ÓÃÍ°µÄË¼Ïë
+ * è§£æ³•ï¼šä½¿ç”¨æ¡¶çš„æ€æƒ³
  * 
  * @author Kevin
  * 
@@ -27,7 +27,7 @@ public class MaxGap {
 			return 0;
 		}
 
-		// ÕÒ×îĞ¡×î´óÖµ
+		// æ‰¾æœ€å°æœ€å¤§å€¼
 		int min = Integer.MAX_VALUE;
 		int max = Integer.MIN_VALUE;
 		int length = arr.length;
@@ -39,12 +39,12 @@ public class MaxGap {
 			return 0;
 		}
 
-		// ³õÊ¼»¯Í°£¨±£Ö¤ÓĞÒ»¸ö¿ÕÍ°£©
+		// åˆå§‹åŒ–æ¡¶ï¼ˆä¿è¯æœ‰ä¸€ä¸ªç©ºæ¡¶ï¼‰
 		boolean[] hasValues = new boolean[length + 1];
 		int[] minValues = new int[length + 1];
 		int[] maxValues = new int[length + 1];
 
-		// ÈëÍ°
+		// å…¥æ¡¶
 		for (int i = 0; i < length; i++) {
 			int bid = findBucketIndex(arr[i], min, max, length);
 			minValues[bid] = hasValues[bid] ? Math.min(minValues[bid], arr[i])
@@ -54,7 +54,7 @@ public class MaxGap {
 			hasValues[bid] = true;
 		}
 
-		// ÕÒÏàÁÚÁ½Í°ÖĞ×î´ó²îÖµ£¬È¡×î´óÖµ¼´ÎªËùÇó
+		// æ‰¾ç›¸é‚»ä¸¤æ¡¶ä¸­æœ€å¤§å·®å€¼ï¼Œå–æœ€å¤§å€¼å³ä¸ºæ‰€æ±‚
 		int result = 0;
 		int lastMax = maxValues[0];
 		for (int i = 1; i <= length; i++) {

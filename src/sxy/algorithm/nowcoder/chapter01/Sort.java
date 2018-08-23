@@ -3,7 +3,7 @@ package sxy.algorithm.nowcoder.chapter01;
 import java.util.Arrays;
 
 /**
- * ¸÷ÖÖÅÅĞòËã·¨(Õë¶Ô×ÔÈ»Êı)
+ * å„ç§æ’åºç®—æ³•(é’ˆå¯¹è‡ªç„¶æ•°)
  * 
  * @author Kevin Su
  * 
@@ -88,12 +88,12 @@ public class Sort {
 	public static int[] heapSort(int[] array) {
 		int[] arr = array.clone();
 
-		// use heap insert[Ê±¼ä¸´ÔÓ¶ÈÎªO(n*log(n))]
+		// use heap insert[æ—¶é—´å¤æ‚åº¦ä¸ºO(n*log(n))]
 		// for (int i = 0; i < arr.length; i++) {
 		// heapInsert(arr, i);
 		// }
 
-		// use heapify[Ê±¼ä¸´ÔÓ¶ÈÎªO(n)]
+		// use heapify[æ—¶é—´å¤æ‚åº¦ä¸ºO(n)]
 		int lastLayer = (int) (Math.log(arr.length) / Math.log(2));
 		for (int i = lastLayer - 1; i >= 0; i--) {
 			for (int j = (int) (Math.pow(2, i) - 1); j < (int) (Math.pow(2,
@@ -138,19 +138,19 @@ public class Sort {
 	public static int[] countSort(int[] array) {
 		int[] arr = array.clone();
 
-		// Í°´óĞ¡
+		// æ¡¶å¤§å°
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < arr.length; i++) {
 			max = Math.max(max, arr[i]);
 		}
 		int[] buckets = new int[max + 1];
 
-		// ÈëÍ°
+		// å…¥æ¡¶
 		for (int i = 0; i < arr.length; i++) {
 			buckets[arr[i]]++;
 		}
 
-		// ³öÍ°
+		// å‡ºæ¡¶
 		int i = 0;
 		for (int j = 0; j < buckets.length; j++) {
 			if (buckets[j] > 0) {
@@ -177,7 +177,7 @@ public class Sort {
 			}
 		}
 
-		// ÕÒ×î´óµÄÊıÎ»
+		// æ‰¾æœ€å¤§çš„æ•°ä½
 		int maxDigit = 1;
 		for (int i = 0; i < arr.length; i++) {
 			int tempMax = 1;
@@ -189,11 +189,11 @@ public class Sort {
 			maxDigit = Math.max(maxDigit, tempMax);
 		}
 
-		for (int d = 1; d <= maxDigit; d++) {// Ã¿¸öÊıÎ»À´Ò»±é½øÍ°ºÍ³öÍ°
-			// 10¸öÍ°£¬´ú±í0~9µÄÊı×Ö
+		for (int d = 1; d <= maxDigit; d++) {// æ¯ä¸ªæ•°ä½æ¥ä¸€éè¿›æ¡¶å’Œå‡ºæ¡¶
+			// 10ä¸ªæ¡¶ï¼Œä»£è¡¨0~9çš„æ•°å­—
 			Node[] buckets = new Node[10];
 
-			// ÏòÍ°Àï·Å
+			// å‘æ¡¶é‡Œæ”¾
 			for (int i = 0; i < arr.length; i++) {
 				int number = getNumber(arr[i], d);
 				if (buckets[number] == null) {
@@ -207,7 +207,7 @@ public class Sort {
 				}
 			}
 
-			// ´ÓÍ°ÀïÄÃ
+			// ä»æ¡¶é‡Œæ‹¿
 			int j = 0;
 			for (int i = 0; i < buckets.length; i++) {
 				Node cur = buckets[i];
@@ -221,7 +221,7 @@ public class Sort {
 		return arr;
 	}
 
-	// »ñÈ¡Ä³Ò»ÌØ¶¨Î»ÉÏµÄÊı×Ö
+	// è·å–æŸä¸€ç‰¹å®šä½ä¸Šçš„æ•°å­—
 	private static int getNumber(int x, int digit) {
 		return (x / (int) Math.pow(10, digit - 1) % 10);
 	}
@@ -318,7 +318,7 @@ public class Sort {
 		return arr;
 	}
 
-	// ºÉÀ¼¹úÆìÎÊÌâ£¬ÈçºÎ½«Ò»¸öÊı×é°´Ä³¸ö»®·ÖÖµ·ÖÎªĞ¡ÓÚ¡¢µÈÓÚ¡¢´óÓÚÇø
+	// è·å…°å›½æ——é—®é¢˜ï¼Œå¦‚ä½•å°†ä¸€ä¸ªæ•°ç»„æŒ‰æŸä¸ªåˆ’åˆ†å€¼åˆ†ä¸ºå°äºã€ç­‰äºã€å¤§äºåŒº
 	private static int[] partition(int[] arr, int start, int end) {
 		int less = start - 1;
 		int more = end + 1;

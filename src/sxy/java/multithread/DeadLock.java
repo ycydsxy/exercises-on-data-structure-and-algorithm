@@ -1,5 +1,11 @@
 package sxy.java.multithread;
 
+/**
+ * 死锁的一个例子
+ * 
+ * @author Kevin
+ *
+ */
 public class DeadLock {
 	public static Object a = new Object();
 	public static Object b = new Object();

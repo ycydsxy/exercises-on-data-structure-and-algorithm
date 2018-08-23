@@ -3,18 +3,18 @@ package sxy.algorithm.nowcoder.chapter02.exercise;
 import java.util.Scanner;
 
 /**
- * Á´½Ó£ºhttps://www.nowcoder.com/questionTerminal/6ffdd7e4197c403e88c6a8aa3e7a332a
- * À´Ô´£ºÅ£¿ÍÍø
+ * é“¾æŽ¥ï¼šhttps://www.nowcoder.com/questionTerminal/6ffdd7e4197c403e88c6a8aa3e7a332a
+ * æ¥æºï¼šç‰›å®¢ç½‘
  * 
- * ÊäÈëÒ»¸öÕýÕûÊýn,Çón!(¼´½×³Ë)Ä©Î²ÓÐ¶àÉÙ¸ö0£¿ ±ÈÈç: n = 10; n! = 3628800,ËùÒÔ´ð°¸Îª2 ÊäÈëÃèÊö:
+ * è¾“å…¥ä¸€ä¸ªæ­£æ•´æ•°n,æ±‚n!(å³é˜¶ä¹˜)æœ«å°¾æœ‰å¤šå°‘ä¸ª0ï¼Ÿ æ¯”å¦‚: n = 10; n! = 3628800,æ‰€ä»¥ç­”æ¡ˆä¸º2 è¾“å…¥æè¿°:
  * 
- * ÊäÈëÎªÒ»ÐÐ£¬n(1 ¡Ü n ¡Ü 1000)
+ * è¾“å…¥ä¸ºä¸€è¡Œï¼Œn(1 â‰¤ n â‰¤ 1000)
  * 
- * Êä³öÃèÊö:
+ * è¾“å‡ºæè¿°:
  * 
- * Êä³öÒ»¸öÕûÊý,¼´ÌâÄ¿ËùÇó
+ * è¾“å‡ºä¸€ä¸ªæ•´æ•°,å³é¢˜ç›®æ‰€æ±‚
  * 
- * ½â·¨£ºÆäÊµ¾ÍÊÇ¶Ôn£¬n-1£¬...1ÕâÐ©Êý·Ö½âÒòÊ½£¬¿´ÓÐ¶àÉÙ¸ö2ºÍ5¡££¨2µÄÊýÁ¿Ì«¶à£¬²»ÓÃ¹ÜÁË£¬Ö»ÓÃ¿´ÓÐ¶àÉÙ¸ö5£©
+ * è§£æ³•ï¼šå…¶å®žå°±æ˜¯å¯¹nï¼Œn-1ï¼Œ...1è¿™äº›æ•°åˆ†è§£å› å¼ï¼Œçœ‹æœ‰å¤šå°‘ä¸ª2å’Œ5ã€‚ï¼ˆ2çš„æ•°é‡å¤ªå¤šï¼Œä¸ç”¨ç®¡äº†ï¼Œåªç”¨çœ‹æœ‰å¤šå°‘ä¸ª5ï¼‰
  * 
  * @author Kevin
  * 

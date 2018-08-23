@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
- * �������ĸ��ֱ������� �ȡ��С���������ĵݹ�ͷǵݹ�д�����Լ�����α���
+ * 二叉树的各种遍历方法 先、中、后序遍历的递归和非递归写法，以及按层次遍历
  * 
  * @author Kevin
  * 
@@ -53,7 +53,7 @@ public class BinaryTreeTraversal {
 	}
 
 	/**
-	 * ˼·��ʹ��ջ��¼������˳����ÿ����ջ�ڵ㶼�ǵ�ǰ�ڵ㣬�ȴ�ӡ���ٽ��ҽڵ����ڵ�ѹ��ջ��ջΪ����˵����������������
+	 * 思路：使用栈记录遍历的顺序，设每个出栈节点都是当前节点，先打印，再将右节点和左节点压入栈。栈为空则说明走完了整个树。
 	 * 
 	 * @param head
 	 */
@@ -77,8 +77,8 @@ public class BinaryTreeTraversal {
 	}
 
 	/**
-	 * ˼·��ʹ��ջ��¼������˳�򣬽���ǰ�ڵ����߽�ȫѹ��ջ��Ϊ����˵����һ���ڵ�������ߵĽڵ㣬��ʼ��ջ�õ�����ӡ��Ȼ��ǰ�ڵ����������ӽڵ㣬
-	 * �ظ��ù��̡�ջΪ���ҵ�ǰ�ڵ�Ϊ����˵������������������һֱ�ڸ���������߽硿
+	 * 思路：使用栈记录遍历的顺序，将当前节点的左边界全压进栈。为空则说明上一个节点是最左边的节点，开始弹栈得到并打印，然后当前节点来到其右子节点，
+	 * 重复该过程。栈为空且当前节点为空则说明走完了整个树。【一直在搞子树的左边界】
 	 * 
 	 * @param head
 	 */
@@ -103,9 +103,9 @@ public class BinaryTreeTraversal {
 	}
 
 	/**
-	 * ʹ������ջ�ĺ������
+	 * 使用两个栈的后序遍历
 	 * 
-	 * ˼·:ǰ������������ң��ĳ�������Ȼ�����򼴿�
+	 * 思路:前序遍历是中左右，改成中右左，然后逆序即可
 	 * 
 	 * @param head
 	 */
@@ -136,12 +136,12 @@ public class BinaryTreeTraversal {
 	}
 
 	/**
-	 * ��ͳ�ĺ������
+	 * 传统的后序遍历
 	 * 
-	 * ˼·����һ��ջ��¼������˳��ÿ��peekһ���ڵ������Ϊ��ǰ�ڵ㡣��һ��last�����洢�ϴδ�ӡ�Ľڵ�(֮ǰ�ڵ�)�������ж��Ƿ��������Σ�
-	 * 1.�����ǰ�ڵ�����ڵ���֮ǰ�ڵ㲻�������ӽڵ㣬˵������Ļ�û���ʣ�ѹ�����ӽڵ㣬����߽磻
-	 * 2.�����ǰ�ڵ����ҽڵ���֮ǰ�ڵ㲻���������ӽڵ㣬��˵���ұߵĻ�û���ʹ���ѹ�����ӽڵ㣬�����ӽڵ����߽磻
-	 * 3.�������˵����ǰ�ڵ���Ҷ�ڵ���ߵ�ǰ�ڵ���ӽڵ㶼����ˣ��򵯳�����ӡ������֮ǰ�ڵ�ָ��ǰ�ڵ㡣
+	 * 思路：用一个栈记录遍历的顺序，每次peek一个节点出来作为当前节点。用一个last变量存储上次打印的节点(之前节点)，依次判断是否以下情形：
+	 * 1.如果当前节点有左节点且之前节点不是它的子节点，说明下面的还没访问，压入左子节点，搞左边界；
+	 * 2.如果当前节点有右节点且之前节点不是它的右子节点，则说明右边的还没访问过，压入右子节点，搞右子节点的左边界；
+	 * 3.其它情况说明当前节点是叶节点或者当前节点的子节点都搞过了，则弹出并打印，并把之前节点指向当前节点。
 	 * 
 	 * @param head
 	 */
@@ -152,15 +152,15 @@ public class BinaryTreeTraversal {
 
 		Stack<Node> stack = new Stack<Node>();
 		stack.push(head);
-		Node cur = null;// ��ǰ�ڵ�
-		Node last = head;// ��һ����ӡ�Ľڵ�
+		Node cur = null;// 当前节点
+		Node last = head;// 上一个打印的节点
 		while (!stack.isEmpty()) {
 			cur = stack.peek();
-			if (cur.left != null && last != cur.left && last != cur.right) {// ��ǰ�ڵ������ӽڵ㣬�Ҳ���ǰһ���ڵ�ĸ��ڵ�
+			if (cur.left != null && last != cur.left && last != cur.right) {// 当前节点有左子节点，且不是前一个节点的父节点
 				stack.push(cur.left);
-			} else if (cur.right != null && last != cur.right) {// ��ǰ�ڵ������ӽڵ㣬��ǰһ���Ľڵ㲻�ǵ�ǰ�ڵ�����ӽڵ�
+			} else if (cur.right != null && last != cur.right) {// 当前节点有右子节点，且前一个的节点不是当前节点的右子节点
 				stack.push(cur.right);
-			} else {// ��ǰ�ڵ���Ҷ�ڵ�||ǰһ���ڵ��ǵ�ǰ�ڵ�����ӽڵ�||��ǰ�ڵ�û���ӽڵ㣬��ǰһ���ڵ��������ӽڵ�
+			} else {// 当前节点是叶节点||前一个节点是当前节点的右子节点||当前节点没右子节点，且前一个节点是其左子节点
 				System.out.print(stack.pop().value + " ");
 				last = cur;
 			}
@@ -168,7 +168,7 @@ public class BinaryTreeTraversal {
 	}
 
 	/**
-	 * ����ǰ����������ǿ������ȱ���ʹ�ö��нṹ
+	 * 类似前序遍历，但是宽度优先遍历使用队列结构
 	 * 
 	 * @param head
 	 */

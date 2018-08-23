@@ -1,11 +1,11 @@
-package sxy.java.singleton;
+package sxy.java.designpattern.singleton;
 
 /**
- * ����ʽ�ĵ���ģʽ
+ * 懒汉式的单例模式
  * 
- * �ŵ㣺��ʹ�õ�ʱ���ٳ�ʼ����ʵ����������
+ * 优点：在使用的时候再初始化，实现了懒加载
  * 
- * ȱ�㣺�̲߳���ȫ�����ܳ��ֶ��ʵ��
+ * 缺点：线程不安全，可能出现多个实例
  * 
  * @author Kevin
  * 

@@ -1,7 +1,7 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * ´òÓ¡Á½¸öÓĞĞòÁ´±íµÄ¹«¹²²¿·Ö
+ * æ‰“å°ä¸¤ä¸ªæœ‰åºé“¾è¡¨çš„å…¬å…±éƒ¨åˆ†
  * 
  * @author Kevin
  * 

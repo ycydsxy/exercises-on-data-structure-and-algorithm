@@ -1,8 +1,8 @@
 package sxy.algorithm.nowcoder.chapter04;
 
 /**
- * ÔÚ¶ş²æÊ÷ÖĞÕÒµ½Ò»¸ö½ÚµãµÄºó¼Ì½Úµã£¬¼ÙÉèÃ¿¸ö½Úµã¶¼ÓĞÒ»¸öÖ¸Ïò¸¸½ÚµãµÄÖ¸Õë£¬Ö»¸øÒ»¸öÔÚ ¶ş²æÊ÷ÖĞµÄÄ³¸ö½Úµã node£¬ÇëÊµÏÖ·µ»ØnodeµÄºó¼Ì½ÚµãµÄº¯Êı¡£ÔÚ¶ş
- * ²æÊ÷µÄÖĞĞò±éÀúµÄĞòÁĞÖĞ£¬ nodeµÄÏÂÒ»¸ö½Úµã½Ğ×÷nodeµÄºó¼Ì½Úµã¡£
+ * åœ¨äºŒå‰æ ‘ä¸­æ‰¾åˆ°ä¸€ä¸ªèŠ‚ç‚¹çš„åç»§èŠ‚ç‚¹ï¼Œå‡è®¾æ¯ä¸ªèŠ‚ç‚¹éƒ½æœ‰ä¸€ä¸ªæŒ‡å‘çˆ¶èŠ‚ç‚¹çš„æŒ‡é’ˆï¼Œåªç»™ä¸€ä¸ªåœ¨ äºŒå‰æ ‘ä¸­çš„æŸä¸ªèŠ‚ç‚¹ nodeï¼Œè¯·å®ç°è¿”å›nodeçš„åç»§èŠ‚ç‚¹çš„å‡½æ•°ã€‚åœ¨äºŒ
+ * å‰æ ‘çš„ä¸­åºéå†çš„åºåˆ—ä¸­ï¼Œ nodeçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å«ä½œnodeçš„åç»§èŠ‚ç‚¹ã€‚
  * 
  * @author Kevin
  * 
@@ -25,15 +25,15 @@ public class SuccessorNode {
 			return null;
 		}
 
-		if (node.right != null) {// ÓĞÓÒ×Ó½Úµã
+		if (node.right != null) {// æœ‰å³å­èŠ‚ç‚¹
 			return getMostLeftNode(node.right);
-		} else {// Ã»ÓÒ×Ó½Úµã
-			if (node.parent == null) {// Ã»¸¸½Úµã
+		} else {// æ²¡å³å­èŠ‚ç‚¹
+			if (node.parent == null) {// æ²¡çˆ¶èŠ‚ç‚¹
 				return null;
-			} else {// ÓĞ¸¸½Úµã
-				if (node == node.parent.left) {// µ±Ç°½ÚµãÊÇ¸¸½ÚµãµÄ×ó×Ó½Úµã
+			} else {// æœ‰çˆ¶èŠ‚ç‚¹
+				if (node == node.parent.left) {// å½“å‰èŠ‚ç‚¹æ˜¯çˆ¶èŠ‚ç‚¹çš„å·¦å­èŠ‚ç‚¹
 					return node.parent;
-				} else {// µ±Ç°½ÚµãÊÇ¸¸½ÚµãµÄÓÒ×Ó½Úµã
+				} else {// å½“å‰èŠ‚ç‚¹æ˜¯çˆ¶èŠ‚ç‚¹çš„å³å­èŠ‚ç‚¹
 					Node cur = node;
 					while (cur.parent != null && cur.parent.right == cur) {
 						cur = cur.parent;

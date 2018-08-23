@@ -1,9 +1,9 @@
-package sxy.java.singleton;
+package sxy.java.designpattern.singleton;
 
 /**
- * 懒汉式的单例模式，使用静态内部类（jvm帮助实现懒加载）
+ * 鎳掓眽寮忕殑鍗曚緥妯″紡锛屼娇鐢ㄩ潤鎬佸唴閮ㄧ被锛坖vm甯姪瀹炵幇鎳掑姞杞斤級
  * 
- * 优点：在使用的时候再初始化，实现了懒加载；线程安全；效率较高
+ * 浼樼偣锛氬湪浣跨敤鐨勬椂鍊欏啀鍒濆鍖栵紝瀹炵幇浜嗘噿鍔犺浇锛涚嚎绋嬪畨鍏紱鏁堢巼杈冮珮
  * 
  * @author Kevin
  * 

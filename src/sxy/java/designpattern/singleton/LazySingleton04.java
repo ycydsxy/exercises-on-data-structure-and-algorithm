@@ -1,9 +1,9 @@
-package sxy.java.singleton;
+package sxy.java.designpattern.singleton;
 
 /**
- * ����ʽ�ĵ���ģʽ��ʹ��ͬ��������˫���ж�
+ * 懒汉式的单例模式，使用同步代码块加双重判断
  * 
- * �ŵ㣺��ʹ�õ�ʱ���ٳ�ʼ����ʵ���������أ��̰߳�ȫ��Ч�ʽϸ�
+ * 优点：在使用的时候再初始化，实现了懒加载；线程安全；效率较高
  * 
  * @author Kevin
  * 

@@ -1,9 +1,9 @@
 package sxy.algorithm.nowcoder.chapter03;
 
 /**
- * ���ߴ�ӡ���� ����һ�����;���matrix���밴�����ߵķ�ʽ��ӡ��������ռ临�Ӷ�ΪO(1)��
+ * 折线打印矩阵 给定一个整型矩阵matrix，请按照折线的方式打印它。额外空间复杂度为O(1)。
  * 
- * �ⷨ��������˼ά����ʵ����ֱ��
+ * 解法：有整体思维，其实就是直线
  * 
  * @author Kevin
  * 
