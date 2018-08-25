@@ -12,10 +12,10 @@ import java.util.Set;
 public class PrintSubsquences {
 
 	public static void main(String[] args) {
-		System.out.println(getSubsquences(0, "abcd"));
+		System.out.println(getSubsquences(0, "abbc"));
 	}
 
-	// 从index开始的子序列
+	// 返回从index位置开始的子序列
 	private static Set<String> getSubsquences(int index, String s) {
 		Set<String> set = new HashSet<>();
 
