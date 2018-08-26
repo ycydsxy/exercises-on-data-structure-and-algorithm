@@ -1,4 +1,4 @@
-﻿package sxy.algorithm.exams.bytedance;
+﻿package sxy.job.bytedance.exam;
 
 import java.util.ArrayList;
 import java.util.Collections;

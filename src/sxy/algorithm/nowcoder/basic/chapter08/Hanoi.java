@@ -5,6 +5,8 @@ package sxy.algorithm.nowcoder.basic.chapter08;
  * 
  * 打印n层汉诺塔从最左边移动到最右边的全部过程
  * 
+ * 解法：考查分解规模更小的子问题和递归实现。
+ * 
  * @author Kevin
  * 
  */

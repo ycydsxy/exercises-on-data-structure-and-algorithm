@@ -1,4 +1,4 @@
-﻿package sxy.algorithm.exams.huawei;
+﻿package sxy.job.huawei.exam;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;

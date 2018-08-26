@@ -1,4 +1,4 @@
-﻿package sxy.algorithm.exams.huawei;
+﻿package sxy.job.huawei.exam;
 
 import java.util.Scanner;
 
