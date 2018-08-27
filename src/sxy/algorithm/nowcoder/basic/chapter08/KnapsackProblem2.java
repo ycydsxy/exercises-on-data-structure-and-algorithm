@@ -41,6 +41,7 @@ public class KnapsackProblem2 {
 		return max;
 	}
 
+	// O(bag^2*N)
 	public static int maxValue2(int[] w, int[] v, int bag) {
 		int[][] dp = new int[bag + 1][w.length + 1];
 
@@ -48,10 +49,7 @@ public class KnapsackProblem2 {
 			for (int i = 0; i <= bag; i++) {
 				int max = Integer.MIN_VALUE;
 				int k = 0;
-				while (true) {
-					if (i - w[j] * k < 0) {
-						break;
-					}
+				while (i - w[j] * k >= 0) {
 					max = max(max, dp[i - w[j] * k][j + 1] + v[j] * k);
 					dp[i][j] = max;
 					k++;
@@ -63,11 +61,29 @@ public class KnapsackProblem2 {
 		return dp[bag][0];
 	}
 
+	// O(bag*N)
+	public static int maxValue3(int[] w, int[] v, int bag) {
+		int[][] dp = new int[bag + 1][w.length + 1];
+
+		for (int j = w.length - 1; j >= 0; j--) {
+			for (int i = 0; i <= bag; i++) {
+				// (i,j)位置受(i-w[j]*k,j+1)位置的影响，但(i-w[j],j)位置已经
+				// 将前面的k-1个最大值算出，故此处不用再遍历，只需要加上差值v[j]即可
+				int lastMax = i - w[j] >= 0 ? dp[i - w[j]][j] + v[j]
+						: Integer.MIN_VALUE;
+				dp[i][j] = max(lastMax, dp[i][j + 1]);
+			}
+		}
+
+		return dp[bag][0];
+	}
+
 	public static void main(String[] args) {
 		int[] w = { 3, 2, 4, 7 };
-		int[] v = { 5, 6, 3, 19 };
+		int[] v = { 5, 6, 3, 11 };
 		int bag = 11;
 		System.out.println(maxValue1(w, v, bag));
 		System.out.println(maxValue2(w, v, bag));
+		System.out.println(maxValue3(w, v, bag));
 	}
 }

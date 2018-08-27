@@ -50,13 +50,36 @@ public class KnapsackProblem3 {
 			for (int i = 0; i <= bag; i++) {
 				int max = Integer.MIN_VALUE;
 				int k = 0;
-				while (true) {
-					if (i - w[j] * k < 0 || k > c[j]) {
-						break;
-					}
+				while (i - w[j] * k >= 0 && k <= c[j]) {
 					max = max(max, dp[i - w[j] * k][j + 1] + v[j] * k);
 					dp[i][j] = max;
 					k++;
+				}
+
+			}
+		}
+		return dp[bag][0];
+	}
+
+	public static int maxValue3(int[] w, int[] v, int[] c, int bag) {
+		int[][] dp = new int[bag + 1][w.length + 1];
+
+		for (int j = w.length - 1; j >= 0; j--) {
+			for (int i = 0; i <= bag; i++) {
+				if (i - w[j] * (c[j] + 1) >= 0
+						&& dp[i - w[j]][j] == dp[i - w[j] * (c[j] + 1)][j + 1]
+								+ v[j] * c[j]) {// 前一个最大值取得的地方在现在的位置已经不能取了，遍历一遍才能取最大值
+					int max = Integer.MIN_VALUE;
+					int k = 0;
+					while (i - w[j] * k >= 0 && k <= c[j]) {
+						max = max(max, dp[i - w[j] * k][j + 1] + v[j] * k);
+						dp[i][j] = max;
+						k++;
+					}
+				} else {
+					int lastMax = i - w[j] >= 0 ? dp[i - w[j]][j] + v[j]
+							: Integer.MIN_VALUE;
+					dp[i][j] = max(lastMax, dp[i][j + 1]);
 				}
 
 			}
@@ -67,10 +90,11 @@ public class KnapsackProblem3 {
 
 	public static void main(String[] args) {
 		int[] w = { 3, 2, 4, 7 };
-		int[] v = { 5, 6, 3, 19 };
-		int[] c = { 2, 0, 3, 4 };
+		int[] v = { 5, 6, 3, 10 };
+		int[] c = { 2, 2, 3, 4 };
 		int bag = 11;
 		System.out.println(maxValue1(w, v, c, bag));
 		System.out.println(maxValue2(w, v, c, bag));
+		System.out.println(maxValue3(w, v, c, bag));
 	}
 }
