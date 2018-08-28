@@ -40,9 +40,7 @@ public class BinarySearchInterval {
 				break;
 			}
 		}
-
 		return flag;
-
 	}
 
 	// 二分查找x是否在区间组intervals中
