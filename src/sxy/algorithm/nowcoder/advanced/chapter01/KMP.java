@@ -10,7 +10,32 @@ package sxy.algorithm.nowcoder.advanced.chapter01;
  */
 public class KMP {
 
-	public static int getIndexOf(String s, String m) {
+	// 暴力解 O(M*N)，从s的x位置开始与m的0位置往下比较，都符合则返回，碰到不符的则从x+1位置再继续该过程
+	public static int getIndexOf1(String s, String m) {
+		if (s == null || m == null || m.length() < 1 || s.length() < m.length()) {
+			return -1;
+		}
+		char[] str1 = s.toCharArray();
+		char[] str2 = m.toCharArray();
+		int x = 0;
+		int y = 0;
+
+		while (x < str1.length && y < str2.length) {
+			if (str1[x] == str2[y]) {
+				y++;
+				x++;
+			} else {
+				x = x - y + 1;
+				y = 0;
+			}
+		}
+
+		return y == str2.length ? x - y : -1;
+
+	}
+
+	// KMP O(N)，借助next数组使得暴力解中很多位置的无用比较直接跳过
+	public static int getIndexOf2(String s, String m) {
 		if (s == null || m == null || m.length() < 1 || s.length() < m.length()) {
 			return -1;
 		}
@@ -64,7 +89,8 @@ public class KMP {
 	public static void main(String[] args) {
 		String str = "abcabcababacccababaccc";
 		String match = "ababa";
-		System.out.println(getIndexOf(str, match));
+		System.out.println(getIndexOf1(str, match));
+		System.out.println(getIndexOf2(str, match));
 	}
 
 }
