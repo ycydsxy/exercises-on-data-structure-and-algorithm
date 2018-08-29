@@ -59,7 +59,7 @@ public class KMP {
 		return y == str2.length ? x - y : -1;
 	}
 
-	// 返回一个数组，该数组中index为i的元素的含义为,m串中m[i]之前的子串中最长的前缀和后缀相等的数目
+	// O(M) 返回一个数组，该数组中index为i的元素的含义为,m串中m[i]之前的子串中最长的前缀和后缀相等的数目
 	private static int[] getNextArray(char[] m) {
 		if (m == null) {
 			return null;
