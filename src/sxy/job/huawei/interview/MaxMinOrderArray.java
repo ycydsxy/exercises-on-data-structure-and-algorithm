@@ -31,7 +31,7 @@ public class MaxMinOrderArray {
 		return arr;
 	}
 
-	// O(N)？
+	// 能做到O(N)吗？
 	public static int[] maxMinOrderSort2(int[] array) {
 		int[] arr = array.clone();
 		return arr;

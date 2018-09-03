@@ -1,96 +1,70 @@
 package sxy.java.multithread;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
+/**
+ * 生产者、消费者模式，使用阻塞队列
+ * 
+ * @author Kevin
+ * 
+ */
 public class ProducerAndConsumer1 {
-	private final int MAX_LEN = 10;
-	private Queue<Integer> queue = new LinkedList<Integer>();
-
-	class Producer extends Thread {
-		@Override
-		public void run() {
-			produce();
-		}
-
-		private void produce() {
-			while (true) {
-				synchronized (queue) {
-					if (queue.size() == MAX_LEN) {
-						System.out.println("当前队列满");
-						try {
-							queue.notify();
-							queue.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					queue.add(1);
-					System.out.println("生产者生产一条任务，当前队列长度为" + queue.size());
-
-					if (Math.random() < 0.4) {// 用概率控制生产速度，通知消费者消费
-						try {
-							queue.notify();
-							queue.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-
-				}
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	class Consumer extends Thread {
-		@Override
-		public void run() {
-			consume();
-		}
-
-		private void consume() {
-			while (true) {
-				synchronized (queue) {
-					if (queue.size() == 0) {
-						System.out.println("当前队列为空");
-						try {
-							queue.notify();
-							queue.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					queue.poll();
-					System.out.println("消费者消费一条任务，当前队列长度为" + queue.size());
-					if (Math.random() < 0.5) {
-						try {
-							queue.notify();
-							queue.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-
-				}
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 
 	public static void main(String[] args) {
-		ProducerAndConsumer1 pc = new ProducerAndConsumer1();
-		Producer producer = pc.new Producer();
-		Consumer consumer = pc.new Consumer();
-		producer.start();
-		consumer.start();
+		BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<>(10);
+
+		new Producer(blockingQueue).start();
+		new Consumer(blockingQueue).start();
+		new Consumer(blockingQueue).start();
+	}
+
+	private static class Producer extends Thread {
+
+		private BlockingQueue<Integer> blockingQueue;
+
+		public Producer(BlockingQueue<Integer> blockingQueue) {
+			super();
+			this.blockingQueue = blockingQueue;
+		}
+
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					blockingQueue.put(1);
+					System.out.println(String.format("生产者%s生产一条任务，当前队列长度为%d",
+							this.getName(), blockingQueue.size()));
+					Thread.sleep((long) (Math.random() * 500));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+
+	private static class Consumer extends Thread {
+		private BlockingQueue<Integer> blockingQueue;
+
+		public Consumer(BlockingQueue<Integer> blockingQueue) {
+			super();
+			this.blockingQueue = blockingQueue;
+		}
+
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					blockingQueue.take();
+					System.out.println(String.format("消费者%s消费一条任务，当前队列长度为%d",
+							this.getName(), blockingQueue.size()));
+					Thread.sleep((long) (Math.random() * 1000));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 	}
 }
