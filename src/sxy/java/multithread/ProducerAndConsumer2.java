@@ -20,7 +20,7 @@ public class ProducerAndConsumer2 {
 	}
 
 	/**
-	 * 加一个队列最大长度
+	 * 加一个队列的最大长度
 	 * 
 	 * @author Kevin
 	 * 
@@ -53,23 +53,24 @@ public class ProducerAndConsumer2 {
 		@Override
 		public void run() {
 			while (true) {
-				synchronized (queue) {
-					while (queue.isFull()) {
-						System.out.println(String.format("生产者 %s发现当前队列满",
-								this.getName()));
-						try {
-							queue.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					queue.add(1);
-					System.out.println(String.format("生产者%s生产一条任务，当前队列长度为%d",
-							this.getName(), queue.size()));
-					queue.notify();
-				}
 				try {
+
+					synchronized (queue) {
+						while (queue.isFull()) {
+							System.out.println(String.format("生产者 %s发现当前队列满",
+									this.getName()));
+
+							queue.wait();
+
+						}
+						queue.add(1);
+						System.out.println(String.format(
+								"生产者%s生产一条任务，当前队列长度为%d", this.getName(),
+								queue.size()));
+						queue.notifyAll();
+					}
 					Thread.sleep((long) (Math.random() * 500));
+
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -89,23 +90,22 @@ public class ProducerAndConsumer2 {
 		@Override
 		public void run() {
 			while (true) {
-				synchronized (queue) {
-					if (queue.isEmpty()) {
-						System.out.println(String.format("消费者 %s发现当前队列为空",
-								this.getName()));
-						try {
-							queue.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					queue.poll();
-					System.out.println(String.format("消费者%s消费一条任务，当前队列长度为%d",
-							this.getName(), queue.size()));
-					queue.notify();
-				}
 				try {
+					synchronized (queue) {
+
+						if (queue.isEmpty()) {
+							System.out.println(String.format("消费者 %s发现当前队列为空",
+									this.getName()));
+							queue.wait();
+						}
+						queue.poll();
+						System.out.println(String.format(
+								"消费者%s消费一条任务，当前队列长度为%d", this.getName(),
+								queue.size()));
+						queue.notifyAll();
+					}
 					Thread.sleep((long) (Math.random() * 1000));
+
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
