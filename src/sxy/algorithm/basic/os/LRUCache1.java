@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * LRU (Least Recently Used)
+ * LRU缓存，使用LinkedHashMap实现
  * 
  * https://www.cnblogs.com/dailidong/p/7571178.html
  * 
@@ -13,14 +13,14 @@ import java.util.Map;
  * @param <K>
  * @param <V>
  */
-public class LRUCache<K, V> extends LinkedHashMap<K, V> {
+public class LRUCache1<K, V> extends LinkedHashMap<K, V> {
 
 	private static final long serialVersionUID = 2139479237910324L;
 
 	// 缓存大小
 	private int cacheSize;
 
-	public LRUCache(int cacheSize) {
+	public LRUCache1(int cacheSize) {
 		super(16, 0.75f, true); // 第三个参数true是关键
 		this.cacheSize = cacheSize;
 	}
@@ -39,7 +39,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 
 	// 测试
 	public static void main(String[] args) {
-		LRUCache<String, String> cache = new LRUCache<String, String>(5);
+		LRUCache1<String, String> cache = new LRUCache1<String, String>(5);
 		cache.put("1", "1");
 		cache.put("2", "2");
 		cache.put("3", "3");
