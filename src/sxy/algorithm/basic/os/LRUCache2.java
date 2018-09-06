@@ -52,9 +52,7 @@ public class LRUCache2<K, V> {
 			this.moveNode(node);
 		} else {// 否则在最前面增加，并干掉超过容量的节点
 			node = new Node<K, V>(key, value);
-			if (size != 0) {
-				node.next = head;
-			}
+			node.next = head;
 			head = node;
 			size++;
 			this.cleanup();
