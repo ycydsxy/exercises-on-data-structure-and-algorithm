@@ -3,7 +3,9 @@ package sxy.algorithm.nowcoder.advanced.chapter01;
 /**
  * 两棵二叉树T1和T2，判断T2是否是T1的子树
  * 
- * 解法：这里将两棵二叉树都前序序列化，然后使用KMP算法看序列化的字符串是否有包含关系
+ * 解法：KMP算法的变体，这里将两棵二叉树都前序序列化，然后使用KMP算法看序列化的字符串是否有包含关系。
+ * 
+ * （其他解法见sxy.algorithm. nowcoder.basic.chapter04.T1SubtreeEqualsT2）
  * 
  * @author Kevin
  * 

@@ -27,7 +27,7 @@ public class ExamB {
 		return max;
 	}
 
-	// 使用栈来做，字符串中仅包含'('和')'
+	// 使用栈来做，前提是字符串中仅包含'('和')'
 	private static int getBasicMaxLength(String str) {
 		int max = 0;
 		Stack<Integer> stack = new Stack<>();

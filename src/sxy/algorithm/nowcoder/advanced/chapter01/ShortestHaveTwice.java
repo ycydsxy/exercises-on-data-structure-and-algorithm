@@ -6,6 +6,8 @@ package sxy.algorithm.nowcoder.advanced.chapter01;
  * 在字符串s后面添加字符串，要求使得添加后的字符串里含有两个原来的字符串（开头位置不同），如何添加可以使得添加串的字符数量最少？（返回添加的字符串）例如，“
  * abcabc”的最少添加字符串为“abc”。
  * 
+ * 解法：KMP算法的变体，只用求next数组就可以了
+ * 
  * @author Kevin
  * 
  */
