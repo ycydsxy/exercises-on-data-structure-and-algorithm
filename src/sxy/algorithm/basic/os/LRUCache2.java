@@ -114,11 +114,11 @@ public class LRUCache2<K, V> {
 
 	private void cleanup() {
 		if (this.size > this.cacheSize) {
-			System.out.println("cleanup!");
 			Node<K, V> cur = head;
 			for (int i = 0; i < cacheSize - 1; i++) {
 				cur = cur.next;
 			}
+			System.out.println("cleanup: " + cur.next.key);
 			cur.next = null;
 		}
 	}
