@@ -1,26 +1,51 @@
 package sxy.java.multithread.jvolatile;
 
+/**
+ * volatile关键字不能保证原子性
+ * 
+ * @author Kevin
+ * 
+ */
 public class TestAtomic {
-	public volatile int inc = 0;
+	public static volatile int inc = 0;
 
-	public void increase() {
-		inc++;
-	}
-
-	public static void main(String[] args) {
-		final TestAtomic test = new TestAtomic();
+	public static int test() {
+		inc = 0;
 		for (int i = 0; i < 10; i++) {
 			new Thread() {
 				@Override
 				public void run() {
-					for (int j = 0; j < 1000; j++)
-						test.increase();
+					for (int j = 0; j < 1000; j++) {
+						inc++;
+					}
+
 				};
 			}.start();
 		}
 
-		while (Thread.activeCount() > 1) // 保证前面的线程都执行完
+		while (Thread.activeCount() > 1) {// 保证所有线程都跑完
 			Thread.yield();
-		System.out.println(test.inc);
+		}
+
+		return inc;
+	}
+
+	public static void main(String[] args) {
+		int expectedResult = 10000;
+		boolean flag = true;
+		for (int i = 0; i < 100; i++) {
+			int result = test();
+			if (result != expectedResult) {
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag) {
+			System.out.println("succeeded!");
+		} else {
+			System.out.println("fuck!");
+			System.out.println(inc);
+		}
 	}
 }

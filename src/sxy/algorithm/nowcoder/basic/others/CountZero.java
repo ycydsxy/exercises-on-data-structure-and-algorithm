@@ -24,6 +24,11 @@ public class CountZero {
 		Scanner s = new Scanner(System.in);
 		int n = s.nextInt();
 		s.close();
+
+		if (n < 1 || n > 1000) {
+			throw new IllegalArgumentException();
+		}
+
 		int k5 = 0;
 		for (int i = n; i >= 1; i--) {
 			int temp = i;

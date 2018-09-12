@@ -24,9 +24,15 @@ public class ConvertNumber {
 		Scanner s = new Scanner(System.in);
 		int m = s.nextInt();
 		int n = s.nextInt();
+		s.close();
+
+		if (n < 2 || n > 16) {
+			throw new IllegalArgumentException();
+		}
+
 		boolean flag = m < 0 ? true : false;
 		m = flag ? -m : m;
-		s.close();
+
 		StringBuilder result = new StringBuilder();
 		while (true) {
 			int p = m / n;

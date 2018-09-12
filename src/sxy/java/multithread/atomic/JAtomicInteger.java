@@ -2,22 +2,36 @@ package sxy.java.multithread.atomic;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class JAtomicInteger {
+/**
+ * atomic类可以保证线程安全
+ * 
+ * @author Kevin
+ * 
+ */
+public class JAtomicInteger implements Runnable {
 
 	private static AtomicInteger atomicInteger = new AtomicInteger(0);
+	private static int normalInt = 0;
+
+	@Override
+	public void run() {
+		for (int i = 0; i < 1000; i++) {
+			atomicInteger.getAndIncrement();
+			normalInt++;
+		}
+	}
 
 	public static void main(String[] args) throws InterruptedException {
-		Runnable task = new Runnable() {
-			@Override
-			public void run() {
-				// 调用AtomicInteger的getAndIncement返回的是增加之前的值
-				System.out.println(atomicInteger.getAndIncrement());
-			}
-		};
-		for (int i = 0; i < 5; i++) {
-			new Thread(task).start();
+
+		for (int i = 0; i < 10; i++) {
+			new Thread(new JAtomicInteger()).start();
 		}
-		Thread.sleep(1000);
-		System.out.println("result:" + atomicInteger.get());
+
+		while (Thread.activeCount() > 1) {// 保证所有线程都跑完
+			Thread.yield();
+		}
+
+		System.out.println("atomicInteger:" + atomicInteger.get());
+		System.out.println("normalInt:" + normalInt);
 	}
 }

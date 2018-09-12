@@ -12,7 +12,7 @@ public class MaxMinOrderArray {
 	public static int[] maxMinOrderSort1(int[] array) {
 		int[] arr = array.clone();
 		for (int i = 0; i < arr.length; i++) {
-			if ((i & 1) == 0) {// 偶数则交换最后一个
+			if ((i & 1) == 0) {// 偶数则交换最后一个，奇数则直接过
 				swap(arr, i, arr.length - 1);
 
 				// 将i位置后面的维持升序排列
@@ -23,17 +23,15 @@ public class MaxMinOrderArray {
 				if (i + 1 < arr.length) {
 					arr[i + 1] = temp;
 				}
-			} else {// 奇数则直接过
-				continue;
 			}
-
 		}
 		return arr;
 	}
 
-	// 能做到O(N)吗？
+	// 能做到小于O(N^2)吗？
 	public static int[] maxMinOrderSort2(int[] array) {
 		int[] arr = array.clone();
+		// TODO: 更优的算法
 		return arr;
 	}
 
