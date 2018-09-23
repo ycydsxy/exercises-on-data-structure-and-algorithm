@@ -37,7 +37,7 @@ public class RandomPool<T> {
 		if (map2.containsKey(key)) {// 有才能删除
 			Integer deleteIndex = map2.get(key);
 			Integer lastIndex = --size;
-			T lastKey = map1.get(size - 1);
+			T lastKey = map1.get(lastIndex);
 			map1.put(deleteIndex, lastKey);
 			map2.put(lastKey, deleteIndex);
 			map1.remove(lastIndex);
@@ -59,12 +59,22 @@ public class RandomPool<T> {
 		pool.insert("zuo");
 		pool.insert("cheng");
 		pool.insert("yun");
-		System.out.println(pool.getRandom());
-		System.out.println(pool.getRandom());
-		System.out.println(pool.getRandom());
-		System.out.println(pool.getRandom());
-		System.out.println(pool.getRandom());
-		System.out.println(pool.getRandom());
+		pool.insert("su");
+
+		pool.delete("cheng");
+
+		HashMap<String, Integer> countMap = new HashMap<>();
+		countMap.put("zuo", 0);
+		countMap.put("cheng", 0);
+		countMap.put("yun", 0);
+		countMap.put("su", 0);
+
+		for (int i = 0; i <= 12000; i++) {
+			String key = pool.getRandom();
+			countMap.put(key, countMap.get(key) + 1);
+		}
+
+		System.out.println(countMap);
 
 	}
 }
