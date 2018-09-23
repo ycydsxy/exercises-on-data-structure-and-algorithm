@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 岛问题
+ * 横竖斜岛问题
  * 
  * @author Kevin
- *
+ * 
  */
 public class ExamA {
 	public static final int SEARCHED_BEFORE = -1;
@@ -31,20 +31,20 @@ public class ExamA {
 		sc.close();
 
 		List<Integer> resultList = new ArrayList<>();
-		
-		for(int i=0;i<m;i++){
-			for(int j=0;j<n;j++){
-				if(matrix[i][j]==1){
-					int currentNodeNum=findAdjecentNum(matrix,i,j);
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (matrix[i][j] == 1) {
+					int currentNodeNum = findAdjecentNum(matrix, i, j);
 					resultList.add(currentNodeNum);
-				}else{
+				} else {
 					continue;
 				}
 			}
 		}
 		Collections.sort(resultList);
-		int listSize=resultList.size();
-		System.out.println(listSize+","+resultList.get(listSize-1));
+		int listSize = resultList.size();
+		System.out.println(listSize + "," + resultList.get(listSize - 1));
 
 	}
 
@@ -57,14 +57,14 @@ public class ExamA {
 		}
 		int result = 1;
 		matrix[x][y] = SEARCHED_BEFORE;
-		result+=findAdjecentNum(matrix,x-1,y+1);
-		result+=findAdjecentNum(matrix,x-1,y);
-		result+=findAdjecentNum(matrix,x-1,y-1);
-		result+=findAdjecentNum(matrix,x,y+1);
-		result+=findAdjecentNum(matrix,x,y-1);
-		result+=findAdjecentNum(matrix,x+1,y+1);
-		result+=findAdjecentNum(matrix,x+1,y);
-		result+=findAdjecentNum(matrix,x+1,y-1);
+		result += findAdjecentNum(matrix, x - 1, y + 1);
+		result += findAdjecentNum(matrix, x - 1, y);
+		result += findAdjecentNum(matrix, x - 1, y - 1);
+		result += findAdjecentNum(matrix, x, y + 1);
+		result += findAdjecentNum(matrix, x, y - 1);
+		result += findAdjecentNum(matrix, x + 1, y + 1);
+		result += findAdjecentNum(matrix, x + 1, y);
+		result += findAdjecentNum(matrix, x + 1, y - 1);
 
 		return result;
 	}
