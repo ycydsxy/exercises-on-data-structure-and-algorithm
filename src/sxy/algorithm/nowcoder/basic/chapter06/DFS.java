@@ -20,7 +20,7 @@ public class DFS {
 			return;
 		}
 		Stack<Node> statck = new Stack<>();
-		HashSet<Node> map = new HashSet<>();// 防止节点重复进队列
+		HashSet<Node> map = new HashSet<>();// 防止节点重复进栈
 		statck.add(node);
 		map.add(node);
 		while (!statck.isEmpty()) {
