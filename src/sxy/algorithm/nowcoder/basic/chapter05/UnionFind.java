@@ -14,6 +14,10 @@ import java.util.List;
  * 
  * c) union(Node a, Node b)：将a和b连通
  * 
+ * 优点: 当isSameSet()或者union()的调用次数到达O(N)级别，则单次的isSameSet()或者union()均是O(1)的。
+ * 
+ * 用途：例如岛问题的并行算法，在分区统计完进行合并时将边界上相连的岛加入并查集，逐个查询isSameSet()，不在同一个集合内则union()，并将总岛数减一.
+ * 
  * @author ZuoChengyun
  * 
  */
