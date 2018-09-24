@@ -59,8 +59,11 @@ public class ProducerAndConsumer2 {
 						while (queue.isFull()) {
 							System.out.println(String.format("生产者 %s发现当前队列满",
 									this.getName()));
-
+							System.out.println(String.format("生产者 %s开始等待",
+									this.getName()));
 							queue.wait();
+							System.out.println(String.format("生产者 %s停止等待",
+									this.getName()));
 
 						}
 						queue.add(1);
@@ -93,10 +96,14 @@ public class ProducerAndConsumer2 {
 				try {
 					synchronized (queue) {
 
-						if (queue.isEmpty()) {
+						while (queue.isEmpty()) {
 							System.out.println(String.format("消费者 %s发现当前队列为空",
 									this.getName()));
+							System.out.println(String.format("消费者 %s开始等待",
+									this.getName()));
 							queue.wait();
+							System.out.println(String.format("消费者 %s停止等待",
+									this.getName()));
 						}
 						queue.poll();
 						System.out.println(String.format(
