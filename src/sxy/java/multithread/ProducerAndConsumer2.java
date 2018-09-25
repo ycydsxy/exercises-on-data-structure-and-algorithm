@@ -56,7 +56,7 @@ public class ProducerAndConsumer2 {
 				try {
 
 					synchronized (queue) {
-						while (queue.isFull()) {
+						while (queue.isFull()) {// 使用while是因为可能被唤醒后队列仍是满的，此时应该再次进入等待状态
 							System.out.println(String.format("生产者 %s发现当前队列满",
 									this.getName()));
 							System.out.println(String.format("生产者 %s开始等待",
@@ -64,7 +64,6 @@ public class ProducerAndConsumer2 {
 							queue.wait();
 							System.out.println(String.format("生产者 %s停止等待",
 									this.getName()));
-
 						}
 						queue.add(1);
 						System.out.println(String.format(
