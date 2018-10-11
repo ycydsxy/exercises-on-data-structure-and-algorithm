@@ -9,10 +9,10 @@ package sxy.java.jvm.loadclass;
 public class LoadClass1 {
 
 	public static void main(String[] args) throws ClassNotFoundException {
-		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-		Class clazz = classLoader.loadClass("sxy.java.jvm.loadclass.LoadClass1DummyClass");
+		Class.forName("sxy.java.jvm.loadclass.LoadClass1DummyClass");
 		System.out.print("Test");
-		clazz.forName("sxy.java.jvm.loadclass.LoadClass1DummyClass");
+		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+		classLoader.loadClass("sxy.java.jvm.loadclass.LoadClass1DummyClass");
 	}
 
 }
