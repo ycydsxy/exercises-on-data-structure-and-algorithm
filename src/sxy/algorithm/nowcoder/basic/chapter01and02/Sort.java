@@ -98,12 +98,12 @@ public class Sort {
 	public static int[] heapSort(int[] array) {
 		int[] arr = array.clone();
 
-		// use heap insert[时间复杂度为O(n*log(n))]
+		// use heap insert[时间复杂度为O(n*log(n))，]
 		// for (int i = 0; i < arr.length; i++) {
 		// heapInsert(arr, i);
 		// }
 
-		// use heapify[时间复杂度为O(n)]
+		// use heapify[时间复杂度为O(n),n/2*1+n/4*2+n/8*3+...]
 		int lastLayer = (int) (Math.log(arr.length) / Math.log(2));
 		for (int i = lastLayer - 1; i >= 0; i--) {
 			for (int j = (int) (Math.pow(2, i) - 1); j < (int) (Math.pow(2,
