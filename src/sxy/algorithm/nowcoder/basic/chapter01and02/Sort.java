@@ -98,7 +98,7 @@ public class Sort {
 	public static int[] heapSort(int[] array) {
 		int[] arr = array.clone();
 
-		// use heap insert[时间复杂度为O(n*log(n))，]
+		// use heap insert[时间复杂度为O(n*log(n))，2*1+4*2+...+(n+1)/2*log(n)]
 		// for (int i = 0; i < arr.length; i++) {
 		// heapInsert(arr, i);
 		// }
