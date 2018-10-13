@@ -109,7 +109,7 @@ public class Manacher {
 			}
 			max = Math.max(max, pArr[i]);
 		}
-		return max - 1;
+		return max - 1;// 从处理后串的回文半径到原字符串的最大回文长度
 	}
 
 	public static void main(String[] args) {
