@@ -16,6 +16,14 @@ public class TestParseBoolean {
 		System.out.println(Boolean.parseBoolean("TRUE"));
 		System.out.println(Boolean.parseBoolean("True"));
 		System.out.println(Boolean.parseBoolean("false"));
+		
+		System.out.println(Boolean.valueOf("1"));
+		System.out.println(Boolean.valueOf("0"));
+		System.out.println(Boolean.valueOf("2"));
+		System.out.println(Boolean.valueOf("true"));
+		System.out.println(Boolean.valueOf("TRUE"));
+		System.out.println(Boolean.valueOf("True"));
+		System.out.println(Boolean.valueOf("false"));
 	}
 
 }
