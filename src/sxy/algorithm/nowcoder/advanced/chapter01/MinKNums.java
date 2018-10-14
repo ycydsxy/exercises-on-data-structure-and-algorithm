@@ -106,7 +106,7 @@ public class MinKNums {
 		return range;
 	}
 
-	// BFPRT算法，和上面partition算法流程的区别就在于选划分值。严格O(N)，非常优秀。
+	// BFPRT算法，和上面partition算法流程的区别就在于选划分值。严格O(N)，非常优秀。空间复杂度也是O(N)，中位数数组是N/5，且只走一边。
 	// BFPRT算法的优点，partition随机可能打偏，导致淘汰的数据量少，而BFPRT每走一次（无论左右）至少能淘汰掉 N*3/10 的数据量
 	public static int[] getMinKNumsByBFPRT(int[] arr, int k) {
 		if (k < 1 || k > arr.length) {
