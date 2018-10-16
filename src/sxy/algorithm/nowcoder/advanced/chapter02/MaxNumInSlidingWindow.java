@@ -3,14 +3,16 @@ package sxy.algorithm.nowcoder.advanced.chapter02;
 import java.util.LinkedList;
 
 /**
+ * 设计一个窗口最大（小）值的更新结构
+ * 
  * 有一个窗口，求在左右边界滑动过程中，窗口的最大（小）值，要求获取当前窗口的最大（小）值的时间复杂度是O(1).
  * 
- * 解法：单调双端队列，窗口中的每个值至多进队列一次，出队列一次，故平均下来的时间复杂度是O(1)的。
+ * 解法：单调双端队列，窗口中的每个值至多进队列一次，出队列一次，故窗口划过N个数时，更新代价是O(N)，故平均下来的时间复杂度是O(1)的。
  * 
  * @author Kevin
  * 
  */
-public class MaxNumInWindow {
+public class MaxNumInSlidingWindow {
 
 	public static class UpdateDeque {
 		public LinkedList<Integer> deque;
