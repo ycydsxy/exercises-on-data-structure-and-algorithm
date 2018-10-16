@@ -2,6 +2,14 @@ package sxy.algorithm.nowcoder.advanced.chapter02;
 
 import java.util.LinkedList;
 
+/**
+ * 有一个窗口，求在左右边界滑动过程中，窗口的最大（小）值，要求获取当前窗口的最大（小）值的时间复杂度是O(1).
+ * 
+ * 解法：单调双端队列，窗口中的每个值至多进队列一次，出队列一次，故平均下来的时间复杂度是O(1)的。
+ * 
+ * @author Kevin
+ * 
+ */
 public class MaxNumInWindow {
 
 	public static class UpdateDeque {
@@ -30,8 +38,7 @@ public class MaxNumInWindow {
 				return;
 			}
 			R++;
-			int x = arr[R - 1];
-			while (!deque.isEmpty() && arr[deque.peekLast()] <= x) {// 非空则从尾部倒出
+			while (!deque.isEmpty() && arr[deque.peekLast()] <= arr[R - 1]) {// 非空则从尾部倒出
 				deque.pollLast();
 			}
 			deque.offerLast(R - 1);
