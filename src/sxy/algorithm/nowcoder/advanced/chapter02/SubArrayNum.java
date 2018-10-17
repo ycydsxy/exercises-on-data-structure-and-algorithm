@@ -24,7 +24,7 @@ import java.util.LinkedList;
  * @author Kevin
  * 
  */
-public class AllLessNumSubArray {
+public class SubArrayNum {
 
 	public static int getNum(int[] arr, int num) {
 		if (arr == null || arr.length == 0) {
