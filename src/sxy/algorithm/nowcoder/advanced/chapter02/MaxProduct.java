@@ -109,6 +109,38 @@ public class MaxProduct {
 		return res;
 	}
 
+	// 使用单调栈，且简化写法。O(N)
+	public static int getMaxProduct3(int[] arr) {
+		int res = 0;
+		int[] sumArr = getSumArr(arr);
+
+		Stack<Integer> mStack = new Stack<>();
+
+		for (int i = 0; i < arr.length; i++) {
+			while (!mStack.isEmpty() && arr[mStack.peek()] >= arr[i]) {// 当前数比栈顶大时结算栈顶元素，不仅如此等于时也结算（虽然相等情况会有结算不正确的情况，但是最后的那个一定结算正确）
+				Integer cur = mStack.pop();
+				Integer left = mStack.isEmpty() ? 0 : mStack.peek() + 1;
+				Integer right = i - 1;
+				int sum = left > 0 ? sumArr[right] - sumArr[left - 1]
+						: sumArr[right];
+				res = Math.max(res, sum * arr[cur]);
+			}
+			mStack.push(i);
+		}
+
+		// 结算单调栈里剩下的元素
+		while (!mStack.isEmpty()) {
+			Integer cur = mStack.pop();
+			Integer left = mStack.isEmpty() ? 0 : mStack.peek() + 1;
+			Integer right = arr.length - 1;// 右边已经到头了
+			int sum = left > 0 ? sumArr[right] - sumArr[left - 1]
+					: sumArr[right];
+			res = Math.max(res, sum * arr[cur]);
+		}
+
+		return res;
+	}
+
 	private static int[] getRandomArray(int len) {
 		if (len < 0) {
 			return null;
@@ -126,7 +158,8 @@ public class MaxProduct {
 			int[] arr = getRandomArray(20);
 			int res1 = getMaxProduct1(arr);
 			int res2 = getMaxProduct2(arr);
-			if (res1 != res2) {
+			int res3 = getMaxProduct3(arr);
+			if (res1 != res2 || res1 != res3) {
 				flag = false;
 			}
 		}
