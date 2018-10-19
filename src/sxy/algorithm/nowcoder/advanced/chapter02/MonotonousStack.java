@@ -1,6 +1,9 @@
 package sxy.algorithm.nowcoder.advanced.chapter02;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -55,7 +58,7 @@ public class MonotonousStack {
 		return res;
 	}
 
-	// 单调栈。O(N)
+	// 单调栈。使用小链表处理重复值。O(N)
 	public static Result getResult2(int[] arr) {
 		Result res = new Result(arr);
 		Stack<Node> mStack = new Stack<>();// 单调栈，从栈底到栈顶由小到大
@@ -81,7 +84,8 @@ public class MonotonousStack {
 			mStack.push(node);
 		}
 
-		while (!mStack.isEmpty()) {// 结算单调栈里剩下的元素
+		// 结算单调栈里剩下的元素
+		while (!mStack.isEmpty()) {
 			Node cur = mStack.pop();
 			while (cur != null) {// 有重复值
 				if (!mStack.isEmpty()) {
@@ -91,6 +95,7 @@ public class MonotonousStack {
 			}
 
 		}
+
 		return res;
 	}
 
@@ -116,6 +121,48 @@ public class MonotonousStack {
 		return pre;
 	}
 
+	// 单调栈。List处理重复值。O(N)
+	public static Result getResult3(int[] arr) {
+		Result res = new Result(arr);
+		Stack<List<Integer>> mStack = new Stack<>();// 单调栈，从栈底到栈顶由小到大
+
+		for (int i = 0; i < arr.length; i++) {
+			while (!mStack.isEmpty() && arr[mStack.peek().get(0)] > arr[i]) {// 和单调栈规则不符，往外弹并结算
+				List<Integer> cur = mStack.pop();
+				for (Integer k : cur) {// 处理重复值
+					res.rightArr[k] = i;
+					if (!mStack.isEmpty()) {
+						res.leftArr[k] = mStack.peek().get(0);
+					}
+				}
+			}
+
+			// 规则相符，可以往里放了
+			if (!mStack.isEmpty() && arr[mStack.peek().get(0)] == arr[i]) {// 处理相等，则压在一起
+				List<Integer> cur = mStack.peek();
+				cur.add(i);
+				Collections.reverse(cur);
+			} else {
+				List<Integer> cur = new ArrayList<Integer>();
+				cur.add(i);
+				mStack.push(cur);
+			}
+		}
+
+		// 结算单调栈里剩下的元素
+		while (!mStack.isEmpty()) {
+			List<Integer> cur = mStack.pop();
+			for (Integer k : cur) {// 处理重复值
+				if (!mStack.isEmpty()) {
+					res.leftArr[k] = mStack.peek().get(0);
+				}
+			}
+
+		}
+
+		return res;
+	}
+
 	private static int[] getRandomArray(int len) {
 		if (len < 0) {
 			return null;
@@ -132,7 +179,7 @@ public class MonotonousStack {
 		for (int i = 0; i < 1000; i++) {
 			int[] arr = getRandomArray(20);
 			Result res1 = getResult1(arr);
-			Result res2 = getResult2(arr);
+			Result res2 = getResult3(arr);
 			if (!Arrays.equals(res1.leftArr, res2.leftArr)
 					|| !Arrays.equals(res1.rightArr, res2.rightArr)) {
 				flag = false;
