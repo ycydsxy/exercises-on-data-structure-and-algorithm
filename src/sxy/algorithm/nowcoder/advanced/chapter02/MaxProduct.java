@@ -109,7 +109,7 @@ public class MaxProduct {
 		return res;
 	}
 
-	// 使用单调栈，且简化写法。O(N)
+	// 使用单调栈，且简化写法，栈顶元素和当前元素相等时也直接弹出结算。O(N)
 	public static int getMaxProduct3(int[] arr) {
 		int res = 0;
 		int[] sumArr = getSumArr(arr);
