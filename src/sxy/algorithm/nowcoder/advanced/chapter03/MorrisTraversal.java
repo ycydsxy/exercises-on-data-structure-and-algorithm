@@ -3,6 +3,8 @@ package sxy.algorithm.nowcoder.advanced.chapter03;
 /**
  * Morris遍历
  * 
+ * 极为逆天的二叉树遍历方式，额外空间复杂度为O(1)
+ * 
  * @author Kevin
  * 
  */
@@ -72,7 +74,7 @@ public class MorrisTraversal {
 					mostRight = mostRight.right;
 				}
 				if (mostRight.right == null) {// 第一次到达cur
-					System.out.println(cur.value);
+					System.out.print(cur.value + " ");
 					mostRight.right = cur;
 					cur = cur.left;
 					continue;
@@ -80,11 +82,12 @@ public class MorrisTraversal {
 					mostRight.right = null;
 				}
 			} else {// 没有左子树，只能到达一次，直接打印
-				System.out.println(cur.value);
+				System.out.print(cur.value + " ");
 			}
 
 			cur = cur.right;
 		}
+		System.out.println();
 	}
 
 	// 中序遍历，只能访问一次直接打印，能够访问两次则第二次打印，整合成向右移动之前打印即可
@@ -108,9 +111,10 @@ public class MorrisTraversal {
 					mostRight.right = null;
 				}
 			}
-			System.out.println(cur.value);
+			System.out.print(cur.value + " ");
 			cur = cur.right;
 		}
+		System.out.println();
 	}
 
 	// 后序遍历，打印时机放在第二次回到节点时，逆序打印该节点的左子树右边界，最后逆序打印整棵树右边界
