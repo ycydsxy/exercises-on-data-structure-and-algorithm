@@ -168,6 +168,22 @@ public class MorrisTraversal {
 		return pre;
 	}
 
+	public static void main(String[] args) {
+		Node head = new Node(4);
+		head.left = new Node(2);
+		head.right = new Node(6);
+		head.left.left = new Node(1);
+		head.left.right = new Node(3);
+		head.right.left = new Node(5);
+		head.right.right = new Node(7);
+		printTree(head);
+		morrisIn(head);
+		morrisPre(head);
+		morrisPos(head);
+		printTree(head);
+
+	}
+
 	private static void printTree(Node head) {
 		System.out.println("Binary Tree:");
 		printInOrder(head, 0, "H", 17);
@@ -195,22 +211,6 @@ public class MorrisTraversal {
 			buf.append(space);
 		}
 		return buf.toString();
-	}
-
-	public static void main(String[] args) {
-		Node head = new Node(4);
-		head.left = new Node(2);
-		head.right = new Node(6);
-		head.left.left = new Node(1);
-		head.left.right = new Node(3);
-		head.right.left = new Node(5);
-		head.right.right = new Node(7);
-		printTree(head);
-		morrisIn(head);
-		morrisPre(head);
-		morrisPos(head);
-		printTree(head);
-
 	}
 
 }
