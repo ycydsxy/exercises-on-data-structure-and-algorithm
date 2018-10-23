@@ -1,7 +1,7 @@
-package sxy.algorithm.basic.os;
+package sxy.algorithm.nowcoder.advanced.chapter04;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * LRU缓存，使用单链表实现
@@ -69,8 +69,8 @@ public class LRUCache2<K, V> {
 		return node.value;
 	}
 
-	public List<K> keySet() {
-		List<K> keySet = new ArrayList<>();
+	public Set<K> keySet() {
+		Set<K> keySet = new TreeSet<>();
 		Node<K, V> cur = head;
 		while (cur != null) {
 			keySet.add(cur.key);
