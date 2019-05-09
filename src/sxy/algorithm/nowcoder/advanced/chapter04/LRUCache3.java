@@ -26,6 +26,7 @@ public class LRUCache3<K, V> {
 		this.capacity = capacity;
 	}
 
+	//时间复杂度为O(1)
 	public V get(K key) {
 		if (this.keyNodeMap.containsKey(key)) {
 			Node<K, V> res = this.keyNodeMap.get(key);
@@ -34,7 +35,8 @@ public class LRUCache3<K, V> {
 		}
 		return null;
 	}
-
+	
+	//时间复杂度为O(1)
 	public void put(K key, V value) {
 		if (this.keyNodeMap.containsKey(key)) {
 			Node<K, V> node = this.keyNodeMap.get(key);

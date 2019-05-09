@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * LRU缓存，使用单链表实现
+ * LRU缓存，使用单链表实现（时间复杂度为O(N)）
  * 
  * @author Kevin
  * 
@@ -41,6 +41,7 @@ public class LRUCache2<K, V> {
 		this.cacheSize = cacheSize;
 	}
 
+	//时间复杂度为O(N)
 	public void put(K key, V value) {
 		if (key == null) {// 默认key不能为null
 			throw new IllegalArgumentException("key is null !");
@@ -60,6 +61,7 @@ public class LRUCache2<K, V> {
 
 	}
 
+	//时间复杂度为O(N)
 	public V get(K key) {
 		Node<K, V> node = this.findNode(key);
 		if (node == null) {
