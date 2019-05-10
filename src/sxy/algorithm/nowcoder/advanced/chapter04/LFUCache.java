@@ -5,8 +5,8 @@ import java.util.HashMap;
 /**
  * LFU（Least Frequently Used）缓存，其get和set方法时间复杂度均是O(1).
  * 
- * LFU和LRU的区别在于，LFU会记录缓存里目前所有内容的操作次数，满时先丢弃最少操作的.使用双向链表连接的桶以及双向链表连接的内部节点实现，
- * 同样操作次数的节点放在一个桶里
+ * LFU和LRU的区别在于，LFU会记录缓存里目前所有内容的操作次数，满时先丢弃最少操作的，操作相同时丢弃最早操作的.
+ * 使用双向链表连接的桶以及双向链表连接的内部节点实现， 同样操作次数的节点放在一个桶里
  * ，桶是按顺序排列的但是并非一定是自然数，因为如果桶内没有元素了需要删掉这个桶.最终删除的元素是最左边的桶的头节点.由于要求时间复杂度是O
  * (1)，需要一个快速找到节点的办法，即需要一个Map<K,Node<K,V>>，另外还需要一个快速找到节点所在桶的办法 ，故还需要一个Map.
  * 
@@ -31,13 +31,14 @@ public class LFUCache<K, V> {
 		}
 	}
 
-	class NodeList {
+	class NodeBucket {
 		public Node head;
 		public Node tail;
-		public NodeList last;
-		public NodeList next;
+		public NodeBucket last;
+		public NodeBucket next;
 
-		public NodeList(Node node) {
+		// 不接受空桶
+		public NodeBucket(Node node) {
 			head = node;
 			tail = node;
 		}
@@ -52,11 +53,12 @@ public class LFUCache<K, V> {
 			return head == null;
 		}
 
+		// 需要保证node在桶中
 		public void deleteNode(Node node) {
-			if (head == tail) {
+			if (head == tail) {// 只有一个节点
 				head = null;
 				tail = null;
-			} else {
+			} else {// 不只一个节点
 				if (node == head) {
 					head = node.down;
 					head.up = null;
@@ -73,102 +75,105 @@ public class LFUCache<K, V> {
 		}
 	}
 
-	private int capacity;
+	private int capacity;// 总限制
 	private int size;
-	private HashMap<K, Node> records;
-	private HashMap<Node, NodeList> heads;
-	private NodeList headList;
+	private HashMap<K, Node> keyNodeMap;
+	private HashMap<Node, NodeBucket> nodeBucketMap;
+	private NodeBucket headBucket;// 头桶，即使用频率最低的桶
 
 	public LFUCache(int capacity) {
 		this.capacity = capacity;
 		this.size = 0;
-		this.records = new HashMap<>();
-		this.heads = new HashMap<>();
-		headList = null;
+		this.keyNodeMap = new HashMap<>();
+		this.nodeBucketMap = new HashMap<>();
+		headBucket = null;
 	}
 
 	public void set(K key, V value) {
-		if (records.containsKey(key)) {
-			Node node = records.get(key);
+		if (keyNodeMap.containsKey(key)) {// 更新
+			Node node = keyNodeMap.get(key);
 			node.value = value;
 			node.times++;
-			NodeList curNodeList = heads.get(node);
-			move(node, curNodeList);
-		} else {
-			if (size == capacity) {
-				Node node = headList.tail;
-				headList.deleteNode(node);
-				modifyHeadList(headList);
-				records.remove(node.key);
-				heads.remove(node);
+			NodeBucket curNodeBucket = nodeBucketMap.get(node);
+			move(node, curNodeBucket); // node从老桶出，进次数+1的桶，有则直接进，无则新建
+		} else {// 新建
+			if (size == capacity) {// 内存不够用，干掉一个节点
+				Node node = headBucket.tail;
+				headBucket.deleteNode(node);
+				modifyBucket(headBucket);
+				keyNodeMap.remove(node.key);
+				nodeBucketMap.remove(node);
 				size--;
 			}
+
+			// 内存够用
 			Node node = new Node(key, value, 1);
-			if (headList == null) {
-				headList = new NodeList(node);
+			if (headBucket == null) {// 没有头桶
+				headBucket = new NodeBucket(node);
 			} else {
-				if (headList.head.times.equals(node.times)) {
-					headList.addNodeFromHead(node);
-				} else {
-					NodeList newList = new NodeList(node);
-					newList.next = headList;
-					headList.last = newList;
-					headList = newList;
+				if (headBucket.head.times.equals(node.times)) {// 头桶操作数为1
+					headBucket.addNodeFromHead(node);
+				} else {// 头桶操作数不是1
+					NodeBucket newList = new NodeBucket(node);
+					newList.next = headBucket;
+					headBucket.last = newList;
+					headBucket = newList;
 				}
 			}
-			records.put(key, node);
-			heads.put(node, headList);
+			keyNodeMap.put(key, node);
+			nodeBucketMap.put(node, headBucket);
 			size++;
 		}
 	}
 
-	private void move(Node node, NodeList oldNodeList) {
-		oldNodeList.deleteNode(node);
-		NodeList preList = modifyHeadList(oldNodeList) ? oldNodeList.last
-				: oldNodeList;
-		NodeList nextList = oldNodeList.next;
+	private void move(Node node, NodeBucket oldNodeBucket) {
+		oldNodeBucket.deleteNode(node);
+		NodeBucket preList = modifyBucket(oldNodeBucket) ? oldNodeBucket.last
+				: oldNodeBucket;
+		NodeBucket nextList = oldNodeBucket.next;
 		if (nextList == null) {
-			NodeList newList = new NodeList(node);
+			NodeBucket newList = new NodeBucket(node);
 			if (preList != null) {
 				preList.next = newList;
 			}
 			newList.last = preList;
-			if (headList == null) {
-				headList = newList;
+			if (headBucket == null) {
+				headBucket = newList;
 			}
-			heads.put(node, newList);
+			nodeBucketMap.put(node, newList);
 		} else {
 			if (nextList.head.times.equals(node.times)) {
 				nextList.addNodeFromHead(node);
-				heads.put(node, nextList);
+				nodeBucketMap.put(node, nextList);
 			} else {
-				NodeList newList = new NodeList(node);
+				NodeBucket newList = new NodeBucket(node);
 				if (preList != null) {
 					preList.next = newList;
 				}
 				newList.last = preList;
 				newList.next = nextList;
 				nextList.last = newList;
-				if (headList == nextList) {
-					headList = newList;
+				if (headBucket == nextList) {
+					headBucket = newList;
 				}
-				heads.put(node, newList);
+				nodeBucketMap.put(node, newList);
 			}
 		}
 	}
 
-	// return whether delete this head
-	private boolean modifyHeadList(NodeList nodeList) {
-		if (nodeList.isEmpty()) {
-			if (headList == nodeList) {
-				headList = nodeList.next;
-				if (headList != null) {
-					headList.last = null;
+	// return whether delete this bucket
+	//当前桶为空则删掉，若删掉的是头桶则换头桶
+	private boolean modifyBucket(NodeBucket nodeBucket) {
+		if (nodeBucket.isEmpty()) {
+			if (headBucket == nodeBucket) {
+				headBucket = nodeBucket.next;
+				if (headBucket != null) {
+					headBucket.last = null;
 				}
 			} else {
-				nodeList.last.next = nodeList.next;
-				if (nodeList.next != null) {
-					nodeList.next.last = nodeList.last;
+				nodeBucket.last.next = nodeBucket.next;
+				if (nodeBucket.next != null) {
+					nodeBucket.next.last = nodeBucket.last;
 				}
 			}
 			return true;
@@ -177,13 +182,13 @@ public class LFUCache<K, V> {
 	}
 
 	public V get(K key) {
-		if (!records.containsKey(key)) {
+		if (!keyNodeMap.containsKey(key)) {
 			return null;
 		}
-		Node node = records.get(key);
+		Node node = keyNodeMap.get(key);
 		node.times++;
-		NodeList curNodeList = heads.get(node);
-		move(node, curNodeList);
+		NodeBucket curNodeBucket = nodeBucketMap.get(node);
+		move(node, curNodeBucket);
 		return node.value;
 	}
 
