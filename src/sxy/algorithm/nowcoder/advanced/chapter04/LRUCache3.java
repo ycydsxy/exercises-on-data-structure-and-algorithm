@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * LRU缓存，使用Map和双向链表实现
+ * LRU缓存，使用Map和双向链表实现，时间复杂度为O(1)
  * 
  * 思路：Map<Key,Node>能够以O(1)复杂度找到相应Key的Node，Node存在双向链表里
  * 
