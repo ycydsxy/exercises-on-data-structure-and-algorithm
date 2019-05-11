@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @author ZuoChengyun & Kevin
  * 
  */
-public class MostSubArrayXOR {
+public class MostSubArrayXORZero {
 
 	// 时间复杂度O(N)的动态规划
 	public static int mostXOR(int[] arr) {
