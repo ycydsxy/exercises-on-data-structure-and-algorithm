@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
  * @author Kevin
  * 
  */
-public class MadianQuick {
+public class MedianQuick {
 
 	private PriorityQueue<Integer> less = new PriorityQueue<Integer>(
 			new Comparator<Integer>() {
