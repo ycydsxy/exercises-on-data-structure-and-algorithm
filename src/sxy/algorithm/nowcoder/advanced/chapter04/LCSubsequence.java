@@ -9,6 +9,7 @@ package sxy.algorithm.nowcoder.advanced.chapter04;
  * @author Zuochengyun & Kevin
  * 
  */
+
 public class LCSubsequence {
 
 	public static String lcse(String str1, String str2) {
@@ -60,6 +61,7 @@ public class LCSubsequence {
 		String str1 = "A1BC2D3EFGH45I6JK7LMN";
 		String str2 = "12OPQ3RST4U5V6W7XYZ";
 		System.out.println(lcse(str1, str2));
+		// 可以利用最长公共子序列计算最长回文子序列
 
 	}
 }
