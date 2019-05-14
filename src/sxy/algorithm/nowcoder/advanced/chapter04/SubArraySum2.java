@@ -9,7 +9,7 @@ package sxy.algorithm.nowcoder.advanced.chapter04;
  * 
  * 拓展问题： 矩阵中，子矩阵的最大累加和问题
  * 
- * @author ZuoChengyun & Kevin
+ * @author Kevin
  * 
  */
 
