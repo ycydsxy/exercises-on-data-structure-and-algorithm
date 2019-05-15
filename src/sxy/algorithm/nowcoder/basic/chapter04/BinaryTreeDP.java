@@ -1,7 +1,7 @@
 package sxy.algorithm.nowcoder.basic.chapter04;
 
 /**
- * 树形DP有关题目特点：题设和每个节点有关（或者所有子树）
+ * 树形DP有关题目特点：题设和每个节点有关（或者所有子树），或者求解流程可以定成以每个节点为头的子树如何如何...
  * 
  * 解法：
  * 
@@ -29,7 +29,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * 是否是完全二叉树
+	 * 是否是完全二叉树（CBT即从左到右依次怼）
 	 * 
 	 * @param head
 	 * @return
@@ -83,7 +83,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * 是否是二叉搜索树
+	 * 是否是二叉搜索树（BST即对每个节点而言都有，左<根<右）
 	 * 
 	 * @param head
 	 * @return
@@ -128,7 +128,7 @@ public class BinaryTreeDP {
 	}
 
 	/**
-	 * 是否是平衡二叉树
+	 * 是否是平衡二叉树（BBT即每个节点都有左右两个子树的高度差的绝对值不超过1）
 	 * 
 	 * @param head
 	 * @return
