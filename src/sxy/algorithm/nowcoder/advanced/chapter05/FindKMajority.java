@@ -19,8 +19,7 @@ import java.util.Map.Entry;
  * 思路：最多有K-1个.仿照原问题，每次干掉K个不同的数.
  * 
  * @author Kevin
- * 
- */
+ *  */
 
 public class FindKMajority {
 
