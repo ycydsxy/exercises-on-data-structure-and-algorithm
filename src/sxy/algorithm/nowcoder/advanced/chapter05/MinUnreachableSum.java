@@ -20,7 +20,6 @@ package sxy.algorithm.nowcoder.advanced.chapter05;
  * 可以搞到1~arr[0]-1+arr[0]范围.设每到一个位置i时，之前能搞到1~range范围，则目前的目标是搞到1~arr[i]-1范围，
  * 如果range>=arr[i]-1则不需要任何数字就能达成目标，且包含当前位置可以搞到1~range+arr[i]范围；否则说明目前的目标没达到，故而需要补充
  * range+1的数字，则当前能够搞到1~range*2+1范围，重复该过程直到当前目标满足。在此过程中range只要超过N就停止，记录的数就是缺的数字.
-
  * 
  * @author Kevin
  * 
