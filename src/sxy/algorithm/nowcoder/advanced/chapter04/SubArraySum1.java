@@ -13,7 +13,7 @@ package sxy.algorithm.nowcoder.advanced.chapter04;
  * 
  */
 
-public class SubArraySum2 {
+public class SubArraySum1 {
 
 	// dp，O(N)
 	public static int getMaxSum1(int[] arr) {

@@ -11,7 +11,7 @@ package sxy.algorithm.nowcoder.advanced.chapter04;
  * 
  */
 
-public class SubArraySum {
+public class SubArraySum3 {
 
 	// 最优算法，时间复杂度O(N)
 	public static int maxLengthAwesome(int[] arr, int k) {

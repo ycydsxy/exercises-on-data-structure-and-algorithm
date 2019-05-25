@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 字符梯子（https://leetcode.com/problems/word-ladder/）
+ * 
  * 给两个单词beginWord和endWord，并给一个单词集wordList，希望从beginWord变成endWord，每次变一个字母，
  * 且每次变完的结果都在wordList中.问从beginWord变到endWord最少的步数是多少?
  * 
